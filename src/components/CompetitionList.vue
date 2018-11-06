@@ -1,6 +1,6 @@
 <template>
     <div id="list">
-        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        
     </div>
 </template>
 
@@ -14,10 +14,13 @@
 
 <style scoped>
     #list{
+        position: fixed;
+        right: 0;
+
         width: calc(100% - 400px);
         height: 100vh;
 
-        background-color: purple;
+        background-color: #FFF4E0;
 
         display: flex;
         flex-direction: column;

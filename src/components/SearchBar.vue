@@ -37,11 +37,16 @@
 </script>
 
 <style scoped>
+        *{
+            color: #393E46;
+        }
     #search{
+        position: fixed;
+        
         width: 400px;
         height: 100vh;
 
-        background-color: plum;
+        background-color: #00ADB5;
 
         display: flex;
         flex-direction: column;
@@ -78,7 +83,7 @@
         width: 30%;
         height: 80%;
         font-size: 1em;
-        border: 1px solid grey;
+        border: 1px solid #393E46;
         border-radius: 5px;
     }
 
@@ -100,7 +105,7 @@
         width: 100%;
         height: 40px;
         font-size: 1em;
-        border: 1px solid grey;
+        border: 1px solid #393E46;
         border-radius: 5px;
     }
 </style>
