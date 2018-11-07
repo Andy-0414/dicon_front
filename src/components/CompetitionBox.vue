@@ -2,8 +2,8 @@
     <v-flex xs12 sm4>
         <v-card class="pa-2 ma-2">
             <v-img
-                src="https://ncache.ilbe.com/files/attach/new/20130505/14357299/1117152901/1179996754/5a5a26811deb267e632df6a6f1770006.jpg"
-                aspect-ratio="2.75"
+                src="http://card.mokoaki.net/images/user_image/p/030820_fh4ponivmoto.jpg"
+                aspect-ratio="1"
             ></v-img>
             <v-card-title primary-title>
                 <h3 class="headline">{{name}}</h3>
