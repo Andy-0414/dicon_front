@@ -7,13 +7,14 @@
             app
             width="400"
         >
-        <v-subheader class="mt-3 grey--text text--darken-1">조건</v-subheader>
+        <v-subheader class="mt-3 grey--text text--darken-5">조건</v-subheader>
             <v-list two-line>
                 <v-list-tile>
-                    <v-select
+                    <v-autocomplete
                     :items="degreeItem"
                     label="참여대상"
-                    ></v-select>
+                    
+                    ></v-autocomplete>
                 </v-list-tile>
                 <v-list-tile>
                     <v-select
@@ -21,7 +22,7 @@
                     label="신청가능"
                     ></v-select>
                 </v-list-tile>
-                <v-subheader class="mt-3 grey--text text--darken-1">기한</v-subheader>
+                <v-subheader class="mt-3 grey--text text--darken-5">기한</v-subheader>
                 <v-list-tile>
                     <v-menu
                         :close-on-content-click="false"
@@ -71,7 +72,7 @@
                         ></v-date-picker>
                     </v-menu>
                 </v-list-tile>
-                <v-subheader class="mt-3 grey--text text--darken-1">검색</v-subheader>
+                <v-subheader class="mt-3 grey--text text--darken-5">검색</v-subheader>
                 <v-list-tile>
                     <v-combobox
                     :items="tegList"
@@ -94,11 +95,19 @@
         <v-toolbar app fixed clipped-left>
             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title>서비스 이름</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-layout row align-center style="max-width: 200px">
+                <Login/>
+                <Register/>
+            </v-layout>
         </v-toolbar>
     </div>
 </template>
 
 <script>
+import Login from './Login.vue'
+import Register from './Register.vue'
+
     export default {
         name: 'SearchBar',
         data: ()=>({
@@ -121,6 +130,10 @@
             }
         },
         props: {
+        },
+        components: {
+            Login,
+            Register
         }
     }
 </script>
