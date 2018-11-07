@@ -6,13 +6,15 @@
                 aspect-ratio="2.75"
             ></v-img>
             <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-2">대회이름</h3>
-              <div>대회 간략한 소개</div>
-              <div>기간</div>
-              <div>태그들</div>
-            </div>
+                <h3 class="headline">{{name}}</h3>
           </v-card-title>
+          <v-card-text>
+              <div>
+              <div class="text-truncate">{{content}}</div>
+              <div class="grey--text">기간</div>
+              <div class="grey--text">태그들</div>
+            </div>
+          </v-card-text>
           <v-card-actions>
             <v-btn flat color="orange">신청</v-btn>
           </v-card-actions>
@@ -24,6 +26,8 @@
     export default {
         name: 'CompetitionBox',
         props: {
+            name:String,
+            content:String,
         }
     } 
 </script>

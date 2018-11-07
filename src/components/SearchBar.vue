@@ -7,8 +7,8 @@
             app
             width="400"
         >
-        <v-subheader class="mt-3 grey--text text--darken-5">조건</v-subheader>
-            <v-list two-line>
+            <v-list two-line class="mx-3">
+                <v-subheader class="mt-3 grey--text text--darken-5">조건</v-subheader>
                 <v-list-tile>
                     <v-autocomplete
                     :items="degreeItem"
