@@ -19,11 +19,15 @@
         </div>
         <div class="listBar">
             <h3>태그</h3>
-            <input type="search">
+            <v-text-field
+              label="Tag"
+            ></v-text-field>
         </div>
         <div class="listBar">
             <h3>검색</h3>
-            <input type="search">
+            <v-text-field
+              label="Search"
+            ></v-text-field>
         </div>
     </div>
 </template>
@@ -37,16 +41,29 @@
 </script>
 
 <style scoped>
-        *{
-            color: #393E46;
-        }
+    *{
+        color: #FFFFFF;
+    }
+    input,select{
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #BABCBE; 
+        border-radius: 5px 5px 0 0;
+        background-color: rgba(0,0,0,0);
+    }
+    option{
+        background-color: rgba(1, 92, 168,0.6)
+    }
+    input:focus ,select:focus{
+        border-bottom: 1px solid whit; 
+    }
     #search{
         position: fixed;
         
         width: 400px;
         height: 100vh;
 
-        background-color: #00ADB5;
+        background-color: #005BA8;
 
         display: flex;
         flex-direction: column;
@@ -64,48 +81,47 @@
     .list{
         width: 80%;
         height: 50px;
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
     .list input{
+        transition: 0.5s;
+
         margin: 0;
         padding: 0;
         
         width: 30%;
         height: 80%;
         font-size: 1em;
-        border: 1px solid grey;
-        border-radius: 5px;
     }
     .list select{
+        transition: 0.5s;
+        
         margin: 0;
         padding: 0;
 
         width: 30%;
         height: 80%;
         font-size: 1em;
-        border: 1px solid #393E46;
-        border-radius: 5px;
+
     }
 
     .listBar{
         width: 80%;
         height: 120px;
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
     .listBar h3{
         margin: 0;
         padding: 0.5em 0;
     }
     .listBar input{
-        font-family: 'Poor Story', cursive;
-        
+        transition: 0.5s;
+
         margin: 0;
         padding: 5px;
         
         width: 100%;
         height: 40px;
         font-size: 1em;
-        border: 1px solid #393E46;
-        border-radius: 5px;
     }
 </style>

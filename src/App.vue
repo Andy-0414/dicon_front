@@ -1,12 +1,5 @@
 <template>
-    <router-view />
+  <v-app>
+      <router-view></router-view>
+  </v-app>
 </template>
-
-<style>
-*{
-    font-family: 'Poor Story', cursive;
-}
-body{
-    margin: 0;
-}
-</style> 

@@ -1,6 +1,8 @@
 <template>
     <div id="list">
-        
+        <header>
+            <h1>참여 가능한 대회 목록</h1>
+        </header>
     </div>
 </template>
 
