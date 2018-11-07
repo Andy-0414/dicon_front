@@ -1,12 +1,10 @@
 <template>
-    <v-content>
-        
-    </v-content>
+    
 </template>
 
 <script>
     export default {
-        name: 'CompetitionList',
+        name: 'LoginBar',
         props: {
         }
     } 
