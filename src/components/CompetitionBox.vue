@@ -1,6 +1,6 @@
 <template>
     <v-flex xs12 sm4>
-        <v-card class="pa-2 ma-2">
+        <v-card class="pa-2 ma-3">
             <v-img
                 src="http://card.mokoaki.net/images/user_image/p/030820_fh4ponivmoto.jpg"
                 aspect-ratio="1"

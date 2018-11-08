@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-btn slot="activator" flat color="orange darken-1" class="">회원가입</v-btn>
+        <v-btn slot="activator" flat color="orange darken-1" class="subheading">회원가입</v-btn>
         <v-card>
           <v-card-title>
             <span class="headline pl-3 pt-3">회원가입</span>
@@ -8,12 +8,29 @@
           <v-card-text>
             <v-container grid-list-md>
                 <v-flex xs12>
-                  <v-text-field label="이메일" required></v-text-field>
+                  <v-text-field label="이메일 *" required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field label="비밀번호" type="password" required></v-text-field>
+                  <v-text-field label="비밀번호 *" type="password" required></v-text-field>
                 </v-flex>
+                <v-flex xs12>
+                  <v-text-field label="비밀번호 확인 *" type="password" required></v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field label="전화번호" required></v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field label="학교" required></v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field label="나이" required></v-text-field>
+                </v-flex>
+                <v-switch
+                :label="`이메일 수신 동의 여부`"
+                ></v-switch>
+                <small-text class="red--text">* 필수항목</small-text>
             </v-container>
+
           </v-card-text>
           <v-card-actions class="pb-3">
             <v-spacer></v-spacer>

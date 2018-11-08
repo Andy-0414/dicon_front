@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-btn slot="activator" flat color="white" class="">로그인</v-btn>
+        <v-btn slot="activator"  flat color="white" class="subheading">로그인</v-btn>
         <v-card>
           <v-card-title>
             <span class="headline pl-3 pt-3">로그인</span>

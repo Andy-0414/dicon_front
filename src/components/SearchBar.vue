@@ -5,10 +5,10 @@
             fixed
             v-model="drawer"
             app
-            width="400"
+            width="350"
         >
-            <v-list two-line class="mx-3">
-                <v-subheader class="mt-3 grey--text text--darken-5">조건</v-subheader>
+            <v-list two-line class="mx-2">
+                <v-subheader class="title mt-3 grey--text text--darken-5">조건</v-subheader>
                 <v-list-tile>
                     <v-autocomplete
                     :items="degreeItem"
@@ -22,7 +22,7 @@
                     label="신청가능"
                     ></v-select>
                 </v-list-tile>
-                <v-subheader class="mt-3 grey--text text--darken-5">기한</v-subheader>
+                <v-subheader class="title mt-5 grey--text text--darken-5">기한</v-subheader>
                 <v-list-tile>
                     <v-menu
                         :close-on-content-click="false"
@@ -72,7 +72,7 @@
                         ></v-date-picker>
                     </v-menu>
                 </v-list-tile>
-                <v-subheader class="mt-3 grey--text text--darken-5">검색</v-subheader>
+                <v-subheader class="title mt-5 grey--text text--darken-5">검색</v-subheader>
                 <v-list-tile>
                     <v-combobox
                     :items="tegList"
@@ -92,11 +92,11 @@
                 </v-list-tile>
             </v-list>
         </v-navigation-drawer>
-        <v-toolbar app fixed clipped-left>
-            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-            <v-toolbar-title>서비스 이름</v-toolbar-title>
+        <v-toolbar app fixed clipped-left height="70">
+            <v-toolbar-side-icon large @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <v-toolbar-title class="headline">서비스 이름</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-layout row align-center style="max-width: 200px">
+            <v-layout row align-center style="max-width: 220px">
                 <Login/>
                 <Register/>
             </v-layout>
