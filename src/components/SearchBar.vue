@@ -92,13 +92,23 @@
                 </v-list-tile>
             </v-list>
         </v-navigation-drawer>
-        <v-toolbar app fixed clipped-left height="65">
+        <v-toolbar app fixed clipped-left height="65" :v-if="!isLogin">
             <v-toolbar-side-icon large @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="headline">서비스 이름</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-layout row align-center style="max-width: 220px">
                 <Login/>
                 <Register/>
+            </v-layout>
+        </v-toolbar>
+        <v-toolbar app fixed clipped-left height="65" :v-if="isLogin">
+            <v-toolbar-side-icon large @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <v-toolbar-title class="headline">서비스 이름</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-layout row align-center style="max-width: 350px">
+                <v-btn flat color="white" class="subheading">내 참여 대회</v-btn>
+                <v-btn flat color="white" class="subheading">계정관리</v-btn>
+                <v-btn flat color="orange" class="subheading">로그아웃</v-btn>
             </v-layout>
         </v-toolbar>
     </div>
@@ -111,6 +121,7 @@ import Register from './Register.vue'
     export default {
         name: 'SearchBar',
         data: ()=>({
+            isLogin:true,
             drawer: true,
             menu: false,
             degreeItem: ['초등','중등','고등','대학','전부'],
