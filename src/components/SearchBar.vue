@@ -92,7 +92,7 @@
                 </v-list-tile>
             </v-list>
         </v-navigation-drawer>
-        <v-toolbar app fixed clipped-left height="70">
+        <v-toolbar app fixed clipped-left height="65">
             <v-toolbar-side-icon large @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="headline">서비스 이름</v-toolbar-title>
             <v-spacer></v-spacer>

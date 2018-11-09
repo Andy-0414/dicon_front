@@ -3,11 +3,7 @@
         <v-layout justify-end>
             <v-flex xs12 lg11>
                 <v-layout wrap align-start justify-start row fill-height  class="pa-3">
-                    <CompetitionBox name="대회이름" content="대회내용" />
-                    <CompetitionBox name="대회이름" content="대회내용" />
-                    <CompetitionBox name="대회이름" content="대회내용" />
-                    <CompetitionBox name="대회이름" content="대회내용" />
-                    <CompetitionBox name="대회이름" content="대회내용" />
+                    <CompetitionBox v-for="x in info" :key="x" :data="x"/>
                 </v-layout>
             </v-flex>
         </v-layout>
@@ -20,6 +16,20 @@
         name: 'CompetitionList',
         props: {
         },
+        data: ()=>({
+            info:[
+                {
+                    name:"선린톤",
+                    img:"http://sunr.in/static/media/desk.f86c603c.png",
+                    content:"선린 해커톤"
+                },
+                {
+                    name:"앱잼",
+                    img:"https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/38476985_2135733006747577_7496676737254686720_n.png?_nc_cat=105&_nc_ht=scontent-icn1-1.xx&oh=d0bf137dfd856f682eb46d6a0d069137&oe=5C71F520",
+                    content:"해커톤"
+                }
+            ]
+        }),
         components: {
             CompetitionBox
         }

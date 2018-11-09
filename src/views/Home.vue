@@ -2,7 +2,6 @@
   <div>
     <SearchBar/>
     <CompetitionList/>
-    <LoginBar/>
   </div>
 </template>
 
