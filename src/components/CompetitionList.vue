@@ -10,7 +10,7 @@
             <v-flex xs12 lg9>
                 <v-container>
                     <v-layout row wrap>
-                        <CompetitionBox v-for="x in info" :key="x" :data="x" />
+                        <CompetitionBox v-for="x in info" :key="x.name" :data="x" />
                     </v-layout>
                 </v-container>
             </v-flex>
