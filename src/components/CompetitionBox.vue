@@ -1,24 +1,43 @@
 <template>
-    <v-flex xs12 sm4>
-        <v-card class="pa-2 ma-3">
-            <v-img
-                :src="data.img"
-                aspect-ratio="1"
-            ></v-img>
-            <v-card-title primary-title>
-                <h3 class="headline">{{data.name}}</h3>
-          </v-card-title>
-          <v-card-text>
-              <div>
-              <div class="text-truncate">{{data.content}}</div>
-              <div class="grey--text">기간</div>
-              <div class="grey--text">태그들</div>
-            </div>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn flat color="orange">신청</v-btn>
-          </v-card-actions>
-        </v-card>
+    <v-flex d-flex xs12 sm4>
+        <v-hover>
+            <v-card class="pa-2 ma-3" slot-scope="{ hover }" :color='(data.isJoin ? "green darken-4" : "")'>
+                <v-img :src="data.img" aspect-ratio="1">
+                    <v-expand-transition>
+                        <div v-if="hover && data.isApplicable" class="d-flex transition-fast-in-fast-out green darken-3 v-card--reveal display-1 white--text"
+                            style="height: 20%;">
+                            신청가능
+                        </div>
+                        <div v-if="hover && !data.isApplicable" class="d-flex transition-fast-in-fast-out red darken-3 v-card--reveal display-1 white--text"
+                            style="height: 20%;">
+                            신청불가
+                        </div>
+                    </v-expand-transition>
+                </v-img>
+                <v-card-title primary-title>
+                    <h3 class="headline">{{data.name}}</h3>
+                </v-card-title>
+                <v-card-text>
+                    <div>
+                        <div class="text-truncate">{{data.content}}</div>
+                        <div class="grey--text">기간</div>
+                        <div>
+                            <v-chip color="green lighten-2" label small v-for="x in data.tegs" :key="x">
+                                <span class="">
+                                    {{ x }}
+                                </span>
+                            </v-chip>
+                        </div>
+                    </div>
+                </v-card-text>
+                <v-card-actions>
+                    <v-layout align-end justify-end row fill-height>
+                        <v-btn flat color="green" class="subheading" v-if="data.isJoin">신청완료</v-btn>
+                        <v-btn flat color="orange" class="subheading" v-else>신청</v-btn>
+                    </v-layout>
+                </v-card-actions>
+            </v-card>
+        </v-hover>
     </v-flex>
 </template>
 
@@ -26,11 +45,18 @@
     export default {
         name: 'CompetitionBox',
         props: {
-            data:Object
+            data: Object
         }
     } 
 </script>
 
 <style scoped>
-
+    .v-card--reveal {
+        align-items: center;
+        bottom: 0;
+        justify-content: center;
+        opacity: .5;
+        position: absolute;
+        width: 100%;
+    }
 </style>
