@@ -25,47 +25,100 @@
         props: {
         },
         data: () => ({
-            info: [
-                {
-                    name: "전생했더니 슬라임이었던 건에 대하여",
-                    img: "http://mblogthumb1.phinf.naver.net/MjAxODA2MDlfMjI4/MDAxNTI4NDcyODU5NDQ3.dyf12tALNNcSrtbytw7LSxQ9z0d1Vk1zV7GrGlyB9Zog.qTesKG0jy3CNnHdaiMGv-F_RGhSNMy2FsCs66tjh0Wog.JPEG.bakemono1/a9b220bc0e.jpg?type=w800",
-                    content: "이세계 환생물",
-                    tegs: ["이세계", "환생", "슬라임", "중세"],
-                    isJoin: true,
-                    isApplicable: false
-                },
-                {
-                    name: "청춘 돼지는 바니걸 선배의 꿈을 꾸지 않는다",
-                    img: "https://s3.namuwikiusercontent.com/s/35448ebce5d4dc15740eb581ee3cd4cdc79bf872c27007b0548cf7fcadf25f445030c0e88c723a8a8ca1426b958f47c788183d2512c784bb57d4235c050466d67a9c98945c3c2eecb8d29926170ff361b8b2326f5a7527c75608213a7aa49daf",
-                    content: "연애물",
-                    tegs: ["일상", "연애"],
-                    isJoin: false,
-                    isApplicable: true
-                },
-                {
-                    name: "벨제붑 아가씨의 뜻대로",
-                    img: "https://t1.daumcdn.net/cfile/tistory/990BE3395B40282139",
-                    content: "일상 치유물",
-                    tegs: ["일상", "치유", "악마"],
-                    isJoin: false,
-                    isApplicable: true
-                },
-                {
-                    name: "좀비 랜드 사가",
-                    img: "https://s3.namuwikiusercontent.com/s/fbde0dd1328793e54b98c00e210a979c0410c59f0d9b55a0089e228a50fd9d7c36e08cf326d893c400e32c10f8720a74552c98521a93c3cf228e5e8d5fa98006f0e6c08c6eddae1a161b8719fa5a17a61e57ebca5a83fd4d744355ac0e9aada8",
-                    content: "일상 좀비 아이돌믈?",
-                    tegs: ["일상", "개그", "좀비", "아이돌"],
-                    isJoin: false,
-                    isApplicable: true
-                },
-                {
-                    name: "어떤 마술의 금서목록 3기",
-                    img: "https://laftelimage.blob.core.windows.net/items/thumbs/large/f118f182-1e5c-4882-98e4-4fe7edd491e1.jpg",
-                    content: "초능력 전투물",
-                    tegs: ["마법", "능력", "전투", "먼치킨"],
-                    isJoin: false,
-                    isApplicable: true
-                }
+            info: [{
+                name: "선린톤",
+                img: "http://sunr.in/static/media/desk.f86c603c.png",
+                content: "선린 해커톤",
+                tags: [
+                    "태그1",
+                    "태그2",
+                    "태그1",
+                    "태그2"
+                ],
+                isJoin: true,
+                isApplicable: false
+            },
+            {
+                name: "앱잼",
+                img: "https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/38476985_2135733006747577_7496676737254686720_n.png?_nc_cat=105&_nc_ht=scontent-icn1-1.xx&oh=d0bf137dfd856f682eb46d6a0d069137&oe=5C71F520",
+                content: "해커톤",
+                tags: [
+                    "태그1"
+                ],
+                isJoin: false,
+                isApplicable: true
+            },
+            {
+                name: "바른톤",
+                img: "https://cfile1.onoffmix.com/images/event/145572/s",
+                content: "해커톤",
+                tags: [
+                    "태그1"
+                ],
+                isJoin: true,
+                isApplicable: true
+            },
+            {
+                name: "if 해커톤",
+                img: "https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/43296378_341495189743882_8082769748288339968_n.jpg?_nc_cat=110&_nc_ht=scontent-icn1-1.xx&oh=c6bfa85ea0be3bab087756e460e560b7&oe=5C3CE5C5",
+                content: "해커톤",
+                tags: [
+                    "태그1"
+                ],
+                isJoin: false,
+                isApplicable: true
+            },
+            {
+                name: "T 해커톤",
+                img: "https://developers.sktelecom.com/upload/opdc/daumeditor/20170615/daumEditerUserName_20170615190827.png",
+                content: "해커톤",
+                tags: [
+                    "태그1"
+                ],
+                isJoin: false,
+                isApplicable: true
+            },
+            {
+                name: "SW융합 해커톤 대회",
+                img: "https://cfile1.onoffmix.com/images/event/146873/s",
+                content: "해커톤",
+                tags: [
+                    "태그1"
+                ],
+                isJoin: false,
+                isApplicable: true
+            },
+            {
+                name: "NUGU Play 개발 및 아이디어 공모전",
+                img: "https://cfile1.onoffmix.com/images/event/156014/s",
+                content: "공모전",
+                tags: [
+                    "태그1"
+                ],
+                isJoin: true,
+                isApplicable: true
+            },
+            {
+                name: "4차산업혁명 특별시 대전 ICT/SW 분야 빅데이터 공모전",
+                img: "https://cfile1.onoffmix.com/images/event/155986/s",
+                content: "공모전",
+                tags: [
+                    "태그1"
+                ],
+                isJoin: true,
+                isApplicable: true
+            },
+            {
+                name: "제 9회 KT&G 상상실현 콘테스트",
+                img: "https://cfile1.onoffmix.com/images/event/155964/s",
+                content: "공모전",
+                tags: [
+                    "태그1",
+                    "태그2"
+                ],
+                isJoin: true,
+                isApplicable: true
+            }
             ]
         }),
         components: {
