@@ -22,7 +22,7 @@
                         <div class="text-truncate">{{data.content}}</div>
                         <div class="grey--text">기간</div>
                         <div>
-                            <v-chip color="green lighten-2" label small v-for="x in data.tegs" :key="x">
+                            <v-chip color="green lighten-2" label small v-for="x in data.tags" :key="x">
                                 <span class="">
                                     {{ x }}
                                 </span>
