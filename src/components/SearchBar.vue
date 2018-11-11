@@ -45,8 +45,7 @@
 </template>
 
 <script>
-    import Login from './Login.vue'
-    import Register from './Register.vue'
+    
 
     export default {
         name: 'SearchBar',
@@ -76,10 +75,6 @@
             }
         },
         props: {
-        },
-        components: {
-            Login,
-            Register
         },
         computed: {
             getShowMenu(){

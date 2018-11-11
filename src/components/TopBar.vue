@@ -21,12 +21,18 @@
 </template>
 
 <script>
+    import Login from './Login.vue'
+    import Register from './Register.vue'
     export default {
         name: 'topBar',
         data: () => ({
-            isLogin: true,
+            isLogin: false,
             serviceName: "서비스 이름",
         }),
+        components: {
+            Login,
+            Register
+        },
         methods: {
             changeShowMenu(){
                 this.$store.state.showMenu = !this.$store.state.showMenu
