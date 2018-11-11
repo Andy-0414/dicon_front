@@ -32,8 +32,8 @@
                 tags: [
                     "태그1",
                     "태그2",
-                    "태그1",
-                    "태그2"
+                    "태그3",
+                    "태그4"
                 ],
                 isJoin: true,
                 isApplicable: false

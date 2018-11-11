@@ -4,11 +4,11 @@
             <v-card class="pa-2 ma-3" slot-scope="{ hover }" :color='(data.isJoin ? "green darken-4" : "")'>
                 <v-img :src="data.img" aspect-ratio="1">
                     <v-expand-transition>
-                        <div v-if="hover && data.isApplicable" class="d-flex transition-fast-in-fast-out green darken-3 v-card--reveal display-1 white--text"
+                        <div v-if="(hover && data.isApplicable)" class="d-flex transition-fast-in-fast-out green darken-3 v-card--reveal display-1 white--text"
                             style="height: 20%;">
                             신청가능
                         </div>
-                        <div v-if="hover && !data.isApplicable" class="d-flex transition-fast-in-fast-out red darken-3 v-card--reveal display-1 white--text"
+                        <div v-if="(hover && !data.isApplicable)" class="d-flex transition-fast-in-fast-out red darken-3 v-card--reveal display-1 white--text"
                             style="height: 20%;">
                             신청불가
                         </div>
