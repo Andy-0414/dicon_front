@@ -1,5 +1,5 @@
 <template>
-    <div style="overflow:none;">
+    <div>
         <CompetitionList />
         <SearchBar />
         <TopBar />
@@ -16,6 +16,11 @@
             SearchBar,
             CompetitionList,
             TopBar,
+        },
+        methods:{
+
+        },
+        watch:{
         }
     }
 </script>
