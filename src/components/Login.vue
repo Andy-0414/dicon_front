@@ -16,7 +16,8 @@
                     <v-alert :value="loginFail" color="error" icon="warning" transition="scale-transition" outline>
                         일치하지 않는 계정정보입니다.
                     </v-alert>
-                    <v-alert :value="loginSucc" color="success" icon="check_circle" transition="scale-transition" outline>
+                    <v-alert :value="loginSucc" color="success" icon="check_circle" transition="scale-transition"
+                        outline>
                         로그인에 성공하였습니다.
                     </v-alert>
                 </v-container>
@@ -56,28 +57,30 @@
         }),
         methods: {
             login() {
-                this.reqLoading = true;
-                axios.post(this.$store.state.mainPath + "/auth/login",{
-                    username : this.email,
-                    password : this.password
-                })
-                    .then(data => {
-                        this.loginFail = false
-                        this.loginSucc = true
-
-                        setTimeout(()=>{
-                            this.reqLoading = false
+                if (this.$refs.form.validate()) {
+                    this.reqLoading = true;
+                    axios.post(this.$store.state.mainPath + "/auth/login", {
+                        username: this.email,
+                        password: this.password
+                    })
+                        .then(data => {
                             this.loginFail = false
-                            this.loginSucc = false
+                            this.loginSucc = true
 
-                            this.dialog = false;
-                            this.$store.state.userData = data
-                        },2000)
-                    })
-                    .catch(data => {
-                        this.loginFail = true
-                        this.reqLoading = false
-                    })
+                            setTimeout(() => {
+                                this.reqLoading = false
+                                this.loginFail = false
+                                this.loginSucc = false
+
+                                this.dialog = false;
+                                this.$store.state.userData = data
+                            }, 2000)
+                        })
+                        .catch(data => {
+                            this.loginFail = true
+                            this.reqLoading = false
+                        })
+                }
             }
         },
         props: {
