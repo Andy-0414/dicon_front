@@ -26,7 +26,7 @@
                         </v-flex>
                         <v-switch v-model="isAcceptance" :label="`이메일 수신 동의 여부`"></v-switch>
                         <v-alert :value="regFail" color="error" icon="warning" transition="scale-transition" outline>
-                            회원가입에 실패하였습니다.
+                            {{errMsg}}
                         </v-alert>
                         <v-alert :value="regSucc" color="success" icon="check_circle" transition="scale-transition" outline>
                             회원가입에 성공하였습니다.
@@ -54,6 +54,7 @@
             reqLoading: false,
 
             regFail:false,
+            errMsg:"",
             regSucc:false,
 
             email: null,
@@ -91,6 +92,7 @@
                             }, 2000)
                         })
                         .catch(data => {
+                            this.errMsg = data.response.data.message
                             this.regFail = true
                             this.reqLoading = false
                         })
