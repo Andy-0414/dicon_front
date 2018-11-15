@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-btn slot="activator" flat color="orange darken-1" class="subheading">회원가입</v-btn>
+        <v-btn slot="activator" flat color="orange accent-1" class="subheading">회원가입</v-btn>
         <v-card>
             <v-card-title>
                 <span class="headline pl-3 pt-3">회원가입</span>
@@ -9,10 +9,10 @@
                 <v-form ref="form" v-model="valid" lazy-validation>
                     <v-container grid-list-md @keyup.enter="register">
                         <v-flex xs12>
-                            <v-text-field v-model="email" label="이메일 *" :rules="emailRules" required></v-text-field>
+                            <v-text-field prepend-icon="person" v-model="email" label="이메일 *" :rules="emailRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field v-model="password" label="비밀번호 *" type="password" :rules="passwordRule"
+                            <v-text-field prepend-icon="lock" v-model="password" label="비밀번호 *" type="password" :rules="passwordRule"
                                 required></v-text-field>
                         </v-flex>
                         <v-flex xs12>
@@ -36,7 +36,7 @@
             </v-card-text>
             <v-card-actions class="pb-3">
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" flat @click.native="dialog = false">취소</v-btn>
+                <v-btn color="red darken-1" flat @click.native="dialog = false">취소</v-btn>
                 <v-btn :disabled="!valid" color="orange darken-1" flat @click.native="register" :loading="reqLoading">회원가입</v-btn>
             </v-card-actions>
         </v-card>

@@ -1,7 +1,7 @@
 <template>
     <v-flex d-flex xs12 sm4>
         <v-hover>
-            <v-card class="pa-2 ma-3" slot-scope="{ hover }" :color='(data.isJoin ? "green darken-4" : "")'>
+            <v-card class="pa-2 ma-3" slot-scope="{ hover }" :color='(data.isJoin ? "grey darken-2" : "")'>
                 <v-img :src="data.img" aspect-ratio="1">
                     <v-expand-transition>
                         <div v-if="(hover && data.isApplicable)" class="d-flex transition-fast-in-fast-out green darken-3 title v-card--reveal white--text"
@@ -22,7 +22,7 @@
                         <div class="text-truncate">{{data.content}}</div>
                         <div class="grey--text">기간</div>
                         <div>
-                            <v-chip color="green lighten-2" label small v-for="x in data.tags" :key="x">
+                            <v-chip color="deep-orange lighten-3" label small v-for="x in data.tags" :key="x">
                                 <span class="">
                                     {{ x }}
                                 </span>

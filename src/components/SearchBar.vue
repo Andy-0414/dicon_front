@@ -29,7 +29,7 @@
                     <v-combobox :items="tegList" :search-input.sync="search" v-model="tegs" hide-selected label="태그"
                         multiple persistent-hint small-chips>
                         <template slot="selection" slot-scope="{ item, parent, selected }">
-                            <v-chip color="green lighten-2" label small>
+                            <v-chip color="deep-orange lighten-3" label small>
                                 <span class="">
                                     {{ item }}
                                 </span>
@@ -55,7 +55,7 @@
             degreeItem: ['초등', '중등', '고등', '대학'],
             ableItem: ["가능", "불가능"],
             search: null,
-            tegList: ['Vue', 'VueVue'],
+            tegList: ['교내대회', '태그1','태그2'],
 
             selectDegree:[],
             startDate: null,
