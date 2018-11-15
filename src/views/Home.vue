@@ -1,5 +1,5 @@
 <template>
-    <v-content>
+    <v-content height="1">
         <v-layout justify-end>
             <v-flex class="pa-3 px-5 pt-5 orange--text display-1" xs12 lg12>
                 참여 가능한 대회

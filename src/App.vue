@@ -22,3 +22,22 @@
         }
     }
 </script>
+
+<style>
+    html{
+        overflow: hidden;
+    }
+    .v-content{
+        height: 0;
+        overflow-y: auto;
+    }
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #212121;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2); 
+    }
+</style>
