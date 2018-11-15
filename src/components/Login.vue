@@ -9,10 +9,10 @@
                 <v-form ref="form" v-model="valid" lazy-validation>
                 <v-container grid-list-md @keyup.enter="login">
                     <v-flex xs12>
-                        <v-text-field v-model="email" label="이메일" :rules="emailRules" required></v-text-field>
+                        <v-text-field v-model="email" label="이메일" :rules="emailRules" name="email" required></v-text-field>
                     </v-flex>
                     <v-flex xs12>
-                        <v-text-field v-model="password" label="비밀번호" type="password" :rules="passwordRule" required></v-text-field>
+                        <v-text-field v-model="password" label="비밀번호" type="password" :rules="passwordRule" name="password" required></v-text-field>
                     </v-flex>
                     <v-alert :value="loginFail" color="error" icon="warning" transition="scale-transition" outline>
                         일치하지 않는 계정정보입니다.

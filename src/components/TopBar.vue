@@ -13,8 +13,8 @@
         <v-toolbar-title class="headline">{{serviceName}}</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-layout row align-center style="max-width: 350px">
-            <v-btn flat color="white" class="subheading">내 참여 대회</v-btn>
-            <v-btn flat color="white" class="subheading">계정관리</v-btn>
+            <router-link to="/my"><v-btn flat color="white" class="subheading">내 참여 대회</v-btn></router-link>
+            <router-link to="/myinfo"><v-btn flat color="white" class="subheading">계정관리</v-btn></router-link>
             <v-btn flat color="orange" class="subheading" @click.native="logout">로그아웃</v-btn>
         </v-layout>
     </v-toolbar>

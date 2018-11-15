@@ -6,9 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
       showMenu:true,
-      mainPath:"http://localhost:3030",
+      mainPath:"http://58.145.101.15:3030",
 
-      userData:null
+      userData:null,
+      contestData:null
   },
   mutations: {
 
