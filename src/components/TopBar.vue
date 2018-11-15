@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar app fixed clipped-left height="65" v-if="!this.$store.state.userData" color="deep-orange" dark>
+    <v-toolbar app fixed clipped-left height="65" v-if="!this.$store.state.userData" color="orange darken-4" dark>
         <v-toolbar-side-icon large @click.stop="changeShowMenu()"></v-toolbar-side-icon>
         <v-toolbar-title class="headline">{{serviceName}}</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -8,7 +8,7 @@
             <Register />
         </v-layout>
     </v-toolbar>
-    <v-toolbar app fixed clipped-left height="65" v-else color="deep-orange darken-4" dark>
+    <v-toolbar app fixed clipped-left height="65" v-else color="orange darken-4" dark>
         <v-toolbar-side-icon large @click.stop="changeShowMenu()"></v-toolbar-side-icon>
         <v-toolbar-title class="headline">{{serviceName}}</v-toolbar-title>
         <v-spacer></v-spacer>

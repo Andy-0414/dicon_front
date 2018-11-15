@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-btn slot="activator" flat color="orange accent-1" class="subheading">회원가입</v-btn>
+        <v-btn slot="activator" flat color="orange lighten-4" class="subheading">회원가입</v-btn>
         <v-card>
             <v-card-title>
                 <span class="headline pl-3 pt-3">회원가입</span>
