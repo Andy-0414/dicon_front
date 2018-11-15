@@ -70,8 +70,8 @@
                         .then(data => {
                             this.loginFail = false
                             this.loginSucc = true
-                            this.getUser();
                             setTimeout(() => {
+                                this.getUser();
                                 this.reqLoading = false
                                 this.loginFail = false
                                 this.loginSucc = false
@@ -92,7 +92,7 @@
                     withCredentials: true,
                 })
                     .then(userData => {
-                        console.log(userData.data)
+                        //console.log(userData.data)
                         this.$store.state.userData = userData.data
                     })
                     .catch(err =>{
