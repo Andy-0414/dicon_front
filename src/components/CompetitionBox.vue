@@ -22,7 +22,7 @@
                         <div class="text-truncate">{{data.content}}</div>
                         <div class="grey--text">{{`${data.date.startDate} ~ ${data.date.endDate}`}} </div>
                         <div>
-                            <v-chip label small v-for="x in data.tags" :key="x" :color="x.color+' lighten-3'">
+                            <v-chip label small v-for="x in data.tags" :key="x.tag" :color="x.color+' lighten-3'">
                                 {{ x.tag }}
                             </v-chip>
                         </div>

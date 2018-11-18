@@ -27,7 +27,7 @@
                             <v-spacer></v-spacer>
                             <v-card-title class="white--text pl-5 pt-5">
                                 <v-layout wrap class="pl-5 pb-5">
-                                    <v-chip label small v-for="x in data.tags" :key="x" :color="x.color+' lighten-3'">
+                                    <v-chip label small v-for="x in data.tags" :key="x.tag" :color="x.color+' lighten-3'">
                                         {{ x.tag }}
                                     </v-chip>
                                 </v-layout>
@@ -36,13 +36,11 @@
                     </v-img>
                     <v-layout justify-center>
                         <v-flex xs10 lg8>
-                            <v-card flat v-for="i in data.question" :key="i" class="my-5 px-2 pt-2" color="rgba(0,0,0,0.0)">
+                            <v-card flat v-for="i in data.question" :key="i.label" class="my-5 px-2 pt-2" color="rgba(0,0,0,0.0)">
                                 <v-card-title class="headline">{{i.label}}</v-card-title>
-                                <v-card-text>
+                                <v-card-text v-model="inData">
                                     <v-flex xs12>
-                                        <v-radio-group v-model="radioGroup" v-if="i.type == 'radio'">
-                                            <v-radio v-for="n in i.data" :key="n" :label="n" :value="n"></v-radio>
-                                        </v-radio-group>
+                                        <v-select :items="i.data" solo v-if="i.type == 'select'"></v-select>
                                         <v-layout row wrap v-else-if="i.type == 'checkbox'">
                                             <v-checkbox v-for="n in i.data" :key="n" :label="n" :value="n"></v-checkbox>
                                         </v-layout>
@@ -67,9 +65,15 @@
         },
         data: () => ({
             dialog: false,
+            inData: null,
         }),
         methods: {
 
+        },
+        watch: {
+            inData(d) {
+                console.log(d)
+            }
         },
         computed: {
         },
