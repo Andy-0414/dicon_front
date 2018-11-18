@@ -33,7 +33,7 @@
                 <v-card-actions>
                     <v-layout align-end justify-end row fill-height>
                         <v-btn flat color="green" class="subheading" v-if="data.isJoin">신청완료</v-btn>
-                        <v-btn flat color="orange" class="subheading" v-else>신청</v-btn>
+                        <Join :data="data" v-else/>
                     </v-layout>
                 </v-card-actions>
             </v-card>
@@ -42,11 +42,16 @@
 </template>
 
 <script>
+    import Join from './Join.vue'
+
     export default {
         name: 'CompetitionBox',
         props: {
             data: Object
-        }
+        },
+        components: {
+            Join
+        },
     } 
 </script>
 
