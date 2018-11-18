@@ -14,13 +14,21 @@
                             <v-card-title class="white--text pl-5">
                                 <div class="display-3 px-5 pt-5">{{data.name}}</div>
                             </v-card-title>
+                            <v-card-title class="white--text pl-5">
+                                <div>
+                                    <div class="grey--text px-5">
+                                        {{`${data.date.startDate} ~ ${data.date.endDate}`}}
+                                    </div>
+                                    <div class="white--text py-1 px-5">
+                                        {{data.content}}
+                                    </div>
+                                </div>
+                            </v-card-title>
                             <v-spacer></v-spacer>
                             <v-card-title class="white--text pl-5 pt-5">
                                 <v-layout wrap class="pl-5 pb-5">
-                                    <v-chip color="deep-orange lighten-3" label small v-for="x in data.tags" :key="x">
-                                        <span class="">
-                                            {{ x }}
-                                        </span>
+                                    <v-chip label small v-for="x in data.tags" :key="x" :color="x.color+' lighten-3'">
+                                        {{ x.tag }}
                                     </v-chip>
                                 </v-layout>
                             </v-card-title>
@@ -28,11 +36,18 @@
                     </v-img>
                     <v-layout justify-center>
                         <v-flex xs10 lg8>
-                            <v-card flat v-for="i in test.q" :key="i" class="my-5 px-2 pt-3" color="rgba(0,0,0,0.0)">
-                                <v-card-title class="headline">{{i}}</v-card-title>
+                            <v-card flat v-for="i in data.question" :key="i" class="my-5 px-2 pt-2" color="rgba(0,0,0,0.0)">
+                                <v-card-title class="headline">{{i.label}}</v-card-title>
                                 <v-card-text>
                                     <v-flex xs12>
-                                        <v-text-field flat solo light></v-text-field>
+                                        <v-radio-group v-model="radioGroup" v-if="i.type == 'radio'">
+                                            <v-radio v-for="n in i.data" :key="n" :label="n" :value="n"></v-radio>
+                                        </v-radio-group>
+                                        <v-layout row wrap v-else-if="i.type == 'checkbox'">
+                                            <v-checkbox v-for="n in i.data" :key="n" :label="n" :value="n"></v-checkbox>
+                                        </v-layout>
+                                        <v-text-field flat solo v-else-if="i.type == 'text'"></v-text-field>
+                                        <v-switch v-else-if="i.type == 'switch'"></v-switch>
                                     </v-flex>
                                 </v-card-text>
                             </v-card>
@@ -51,15 +66,10 @@
             data: Object
         },
         data: () => ({
-            dialog:false,
-            test:{
-                q: ["너의 이름은?","느그 이름은?","키미노 나와?","아무튼 이름은?"]
-            }
+            dialog: false,
         }),
         methods: {
-            loadEvent() {
-                setTimeout(() => { this.drawer = true }, 1000);
-            }
+
         },
         computed: {
         },

@@ -20,12 +20,10 @@
                 <v-card-text>
                     <div>
                         <div class="text-truncate">{{data.content}}</div>
-                        <div class="grey--text">기간</div>
+                        <div class="grey--text">{{`${data.date.startDate} ~ ${data.date.endDate}`}} </div>
                         <div>
-                            <v-chip color="deep-orange lighten-3" label small v-for="x in data.tags" :key="x">
-                                <span class="">
-                                    {{ x }}
-                                </span>
+                            <v-chip label small v-for="x in data.tags" :key="x" :color="x.color+' lighten-3'">
+                                {{ x.tag }}
                             </v-chip>
                         </div>
                     </div>

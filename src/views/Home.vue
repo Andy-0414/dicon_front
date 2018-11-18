@@ -22,104 +22,66 @@
     //import SearchBar from '../components/SearchBar.vue'
     import CompetitionBox from '../components/CompetitionBox.vue'
 
-     export default {
+    export default {
         props: {
         },
         data: () => ({
-            info: [{
-                name: "선린톤",
-                img: "http://sunr.in/static/media/desk.f86c603c.png",
-                content: "선린 해커톤",
-                tags: [
-                    "태그1",
-                    "태그2",
-                    "태그3",
-                    "태그4"
-                ],
-                isJoin: true,
-                isApplicable: false
-            },
-            {
-                name: "앱잼",
-                img: "https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/38476985_2135733006747577_7496676737254686720_n.png?_nc_cat=105&_nc_ht=scontent-icn1-1.xx&oh=d0bf137dfd856f682eb46d6a0d069137&oe=5C71F520",
-                content: "해커톤",
-                tags: [
-                    "태그1"
-                ],
-                isJoin: false,
-                isApplicable: true
-            },
-            {
-                name: "바른톤",
-                img: "https://cfile1.onoffmix.com/images/event/145572/s",
-                content: "해커톤",
-                tags: [
-                    "태그1"
-                ],
-                isJoin: true,
-                isApplicable: true
-            },
-            {
-                name: "if 해커톤",
-                img: "https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/43296378_341495189743882_8082769748288339968_n.jpg?_nc_cat=110&_nc_ht=scontent-icn1-1.xx&oh=c6bfa85ea0be3bab087756e460e560b7&oe=5C3CE5C5",
-                content: "해커톤",
-                tags: [
-                    "태그1"
-                ],
-                isJoin: false,
-                isApplicable: true
-            },
-            {
-                name: "T 해커톤",
-                img: "https://developers.sktelecom.com/upload/opdc/daumeditor/20170615/daumEditerUserName_20170615190827.png",
-                content: "해커톤",
-                tags: [
-                    "태그1"
-                ],
-                isJoin: false,
-                isApplicable: true
-            },
-            {
-                name: "SW융합 해커톤 대회",
-                img: "https://cfile1.onoffmix.com/images/event/146873/s",
-                content: "해커톤",
-                tags: [
-                    "태그1"
-                ],
-                isJoin: false,
-                isApplicable: true
-            },
-            {
-                name: "NUGU Play 개발 및 아이디어 공모전",
-                img: "https://cfile1.onoffmix.com/images/event/156014/s",
-                content: "공모전",
-                tags: [
-                    "태그1"
-                ],
-                isJoin: true,
-                isApplicable: true
-            },
-            {
-                name: "4차산업혁명 특별시 대전 ICT/SW 분야 빅데이터 공모전",
-                img: "https://cfile1.onoffmix.com/images/event/155986/s",
-                content: "공모전",
-                tags: [
-                    "태그1"
-                ],
-                isJoin: true,
-                isApplicable: true
-            },
-            {
-                name: "제 9회 KT&G 상상실현 콘테스트",
-                img: "https://cfile1.onoffmix.com/images/event/155964/s",
-                content: "공모전",
-                tags: [
-                    "태그1",
-                    "태그2"
-                ],
-                isJoin: true,
-                isApplicable: true
-            }
+            info: [
+                {
+                    "id": 1,
+                    "name": "선린톤",
+                    "img": "http://sunr.in/static/media/desk.f86c603c.png",
+                    "content": "선린 해커톤",
+                    "date": {
+                        "startDate": "2018-7-20",
+                        "endDate": "2018-11-21"
+                    },
+                    "tags": [
+                        {
+                            "color": "red",
+                            "tag": "고등"
+                        },
+                        {
+                            "color": "orange",
+                            "tag": "해커톤"
+                        },
+                        {
+                            "color": "orange",
+                            "tag": "교내대회"
+                        }
+                    ],
+                    "isJoin": false,
+                    "isApplicable": false,
+                    "link": null,
+                    "question": [
+                        {
+                            "type": "text",
+                            "label": "당신의 이름은?",
+                            "data": null
+                        },
+                        {
+                            "type": "radio",
+                            "label": "당신의 학교는?",
+                            "data": [
+                                "선린고",
+                                "디미고"
+                            ]
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "좋아하는 음식은?",
+                            "data": [
+                                "피자",
+                                "치킨",
+                                "고기"
+                            ]
+                        },
+                        {
+                            "type": "switch",
+                            "label": "동의합니까?"
+                        }
+                    ]
+                }
             ]
         }),
         components: {
