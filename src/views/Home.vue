@@ -60,6 +60,11 @@
                             "data": null
                         },
                         {
+                            "type": "text",
+                            "label": "당신의 이메일은?",
+                            "data": null
+                        },
+                        {
                             "type": "select",
                             "label": "당신의 학년은?",
                             "data": [

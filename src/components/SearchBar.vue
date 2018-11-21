@@ -89,16 +89,17 @@
                     this.$nextTick(() => this.tags.pop())
                 }
                 this.tags = tags.map(v => {
-                    if (typeof v === 'string') {
+                    var isString = typeof v === 'string'
+                    if (isString) {
+                        var obj = this.tagList.find(x=>x.text == v)
+                        if(!(obj === undefined)) return obj
                         v = {
                             text: v,
-                            color: "grey"
+                            color: 'grey'
                         }
-                        this.tagList.push(v)
                     }
                     return v
                 })
-                console.log(tags)
             }
         },
         methods: {
