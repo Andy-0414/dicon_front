@@ -10,7 +10,7 @@
             <v-flex xs12 lg9>
                 <v-container>
                     <v-layout row wrap>
-                        <CompetitionBox v-for="x in info" :key="x.name" :data="x" />
+                        <CompetitionBox v-for="x in getContestData" :key="x.name" :data="x" />
                     </v-layout>
                 </v-container>
             </v-flex>
@@ -26,73 +26,16 @@
         props: {
         },
         data: () => ({
-            info: [
-                {
-                    "id": 1,
-                    "name": "선린톤",
-                    "img": "http://sunr.in/static/media/desk.f86c603c.png",
-                    "content": "선린 해커톤",
-                    "date": {
-                        "startDate": "2018-7-20",
-                        "endDate": "2018-11-21"
-                    },
-                    "tags": [
-                        {
-                            "color": "red",
-                            "tag": "고등"
-                        },
-                        {
-                            "color": "orange",
-                            "tag": "해커톤"
-                        },
-                        {
-                            "color": "orange",
-                            "tag": "교내대회"
-                        }
-                    ],
-                    "isJoin": false,
-                    "isApplicable": false,
-                    "link": null,
-                    "question": [
-                        {
-                            "type": "text",
-                            "label": "당신의 이름은?",
-                            "data": null
-                        },
-                        {
-                            "type": "text",
-                            "label": "당신의 이메일은?",
-                            "data": null
-                        },
-                        {
-                            "type": "select",
-                            "label": "당신의 학년은?",
-                            "data": [
-                                "1학년",
-                                "2학년",
-                                "3학년"
-                            ]
-                        },
-                        {
-                            "type": "checkbox",
-                            "label": "좋아하는 음식은?",
-                            "data": [
-                                "피자",
-                                "치킨",
-                                "고기"
-                            ]
-                        },
-                        {
-                            "type": "switch",
-                            "label": "동의합니까?"
-                        }
-                    ]
-                }
-            ]
+
         }),
         components: {
             CompetitionBox,
             //SearchBar
+        },
+        computed: {
+            getContestData() {
+                return this.$store.state.contestData
+            }
         }
     } 
 </script>

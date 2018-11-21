@@ -34,18 +34,25 @@
                     </v-layout>
                 </v-img>
                 <v-layout justify-center>
-                    <v-flex xs10 lg8>
-                        <v-card flat v-for="(i,index) in data.question" :key="i.label" class="my-5 px-2 pt-2" color="rgba(0,0,0,0.0)">
-                            <v-card-title class="headline">{{i.label}}</v-card-title>
-                            <v-card-text>
-                                <v-flex xs12>
-                                    <v-select attach v-if="i.type == 'select'" :items="i.data" solo v-model="inData[index]" />
-                                    <v-select attach v-else-if="i.type == 'checkbox'" :items="i.data" multiple v-model="inData[index]" />
-                                    <v-text-field v-else-if="i.type == 'text'" flat solo v-model="inData[index]" />
-                                    <v-switch v-else-if="i.type == 'switch'" v-model="inData[index]" />
-                                </v-flex>
-                            </v-card-text>
-                        </v-card>
+                    <v-flex xs11 sm10 lg8>
+                        <v-btn block large class="title" :href="data.link" v-if="data.link">외부 링크</v-btn>
+                        <v-form ref="form" v-model="valid" lazy-validation v-else>
+                            <v-card flat v-for="(i,index) in data.question" :key="i.label" class="my-5 px-2 pt-2" color="rgba(0,0,0,0.0)">
+                                <v-card-title class="headline">{{i.label}}</v-card-title>
+                                <v-card-text>
+                                    <v-flex xs12>
+                                        <v-select attach v-if="i.type == 'select'" :items="i.data" solo v-model="inData[index]"
+                                            :rules="notDataRule" required />
+                                        <v-select attach v-else-if="i.type == 'checkbox'" :items="i.data" solo multiple
+                                            :rules="notArrayRule" v-model="inData[index]" required />
+                                        <v-text-field v-else-if="i.type == 'text'" :label="i.data" flat solo v-model="inData[index]"
+                                            :rules="notDataRule" required />
+                                        <v-switch v-else-if="i.type == 'switch'" v-model="inData[index]" />
+                                    </v-flex>
+                                </v-card-text>
+                            </v-card>
+                        </v-form>
+                        <v-btn :disabled="!valid" @click="sendData" block large class="title mb-5">제출</v-btn>
                     </v-flex>
                 </v-layout>
             </v-card-text>
@@ -60,15 +67,20 @@
             data: Object
         },
         data: () => ({
+            valid: true,
             dialog: false,
+
+            notDataRule:[v => !!v || '필수 입력'],
+            notArrayRule:[v => v.length > 0 || '필수 입력'],
+
             inData: [],
         }),
         methods: {
-            getLabel(data) {
-                return data.map(x => {
-                    return x.label
-                })
-            },
+            sendData() {
+                if (this.$refs.form.validate()) {
+                    console.log("OK")
+                }
+            }
         },
         watch: {
             inData(d) {
