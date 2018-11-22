@@ -26,8 +26,8 @@
                         <v-spacer></v-spacer>
                         <v-card-title class="white--text pl-5 pt-5">
                             <v-layout wrap class="pl-5 pb-5">
-                                <v-chip label small v-for="x in data.tags" :key="x.tag" :color="x.color+' lighten-3'">
-                                    {{ x.tag }}
+                                <v-chip label small v-for="x in data.tags" :key="x.text" :color="x.color+' lighten-3'">
+                                    {{ x.text }}
                                 </v-chip>
                             </v-layout>
                         </v-card-title>
