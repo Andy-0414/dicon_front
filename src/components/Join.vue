@@ -51,8 +51,8 @@
                                     </v-flex>
                                 </v-card-text>
                             </v-card>
+                            <v-btn :disabled="!valid" @click="sendData" block large class="title mb-5">제출</v-btn>
                         </v-form>
-                        <v-btn :disabled="!valid" @click="sendData" block large class="title mb-5">제출</v-btn>
                     </v-flex>
                 </v-layout>
             </v-card-text>
