@@ -41,9 +41,9 @@
                                 <v-card-title class="headline">{{i.label}}</v-card-title>
                                 <v-card-text>
                                     <v-flex xs12>
-                                        <v-select attach v-if="i.type == 'select'" :items="i.data" solo v-model="inData[index]"
+                                        <v-select attach v-if="i.type == 'select'" :items="i.data" v-model="inData[index]"
                                             :rules="notDataRule" required />
-                                        <v-select attach v-else-if="i.type == 'checkbox'" :items="i.data" solo multiple
+                                        <v-select attach v-else-if="i.type == 'checkbox'" :items="i.data" multiple
                                             :rules="notArrayRule" v-model="inData[index]" required />
                                         <v-text-field v-else-if="i.type == 'text'" :label="i.data" flat solo v-model="inData[index]"
                                             :rules="notDataRule" required />
