@@ -47,7 +47,7 @@
                                             :rules="notArrayRule" v-model="inData[index]" required />
                                         <v-text-field v-else-if="i.type == 'text'" :label="i.data" flat solo v-model="inData[index]"
                                             :rules="notDataRule" required />
-                                        <v-switch v-else-if="i.type == 'switch'" v-model="inData[index]" />
+                                        <v-switch v-else-if="i.type == 'switch'" v-model="inData[index]" :label="i.data" />
                                     </v-flex>
                                 </v-card-text>
                             </v-card>

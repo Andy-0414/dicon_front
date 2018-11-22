@@ -70,8 +70,10 @@
                         .then(data => {
                             this.loginFail = false
                             this.loginSucc = true
+
                             setTimeout(() => {
-                                this.getUser();
+                                this.$store.state.userData = data.data
+                                
                                 this.reqLoading = false
                                 this.loginFail = false
                                 this.loginSucc = false
@@ -86,19 +88,6 @@
                         })
                 }
             },
-            getUser() {
-                axios(this.$store.state.mainPath + "/auth", {
-                    method: "get",
-                    withCredentials: true,
-                })
-                    .then(userData => {
-                        //console.log(userData.data)
-                        this.$store.state.userData = userData.data
-                    })
-                    .catch(err =>{
-                        console.log(err)
-                    })
-            }
         },
         props: {
         }

@@ -19,10 +19,10 @@
 </template>
 
 <script>
-    //import SearchBar from '../components/SearchBar.vue'
     import CompetitionBox from '../components/CompetitionBox.vue'
 
     export default {
+        name: 'Home',
         props: {
         },
         data: () => ({
@@ -30,7 +30,6 @@
         }),
         components: {
             CompetitionBox,
-            //SearchBar
         },
         computed: {
             getContestData() {

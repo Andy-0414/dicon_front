@@ -16,13 +16,13 @@
                                 required></v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field label="전화번호" required></v-text-field>
+                            <v-text-field v-model="phoneNumber" label="전화번호" required></v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field label="학교" required></v-text-field>
+                            <v-text-field v-model="school" label="학교" required></v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field label="나이" required></v-text-field>
+                            <v-text-field v-model="age" label="나이" required></v-text-field>
                         </v-flex>
                         <v-switch v-model="isAcceptance" :label="`이메일 수신 동의 여부`"></v-switch>
                         <v-alert :value="regFail" color="error" icon="warning" transition="scale-transition" outline>
@@ -59,6 +59,9 @@
 
             email: null,
             password: null,
+            phoneNumber: null,
+            school: null,
+            age: null,
             isAcceptance: false,
 
             emailRules: [
@@ -77,6 +80,9 @@
                     axios.post(this.$store.state.mainPath + "/auth/register", {
                         email: this.email,
                         password: this.password,
+                        phoneNumber: this.phoneNumber,
+                        school: this.school,
+                        age: this.age,
                         isAcceptance : this.isAcceptance
                     })
                         .then(data => {
