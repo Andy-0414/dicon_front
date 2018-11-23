@@ -43,7 +43,7 @@
             </v-card>
         </v-flex>
         <v-flex>
-            <v-card class="pa-2 ma-3" color="rgba(0,0,0,0.1)">
+            <v-card class="pa-3 ma-3" color="rgba(0,0,0,0.1)">
                 <v-card flat v-for="(i,index) in data.question" :key="data[index]" class="my-5 px-2 pt-2" color="rgba(0,0,0,0)">
                     <v-card-title>
                         <v-text-field class="headline" v-model="data.question[index].label"></v-text-field>
@@ -184,7 +184,7 @@
                     this.data.question.push({
                         type: type,
                         label: null,
-                        data: null,
+                        data: [],
                     })
                     this.dialog = false
                 }

@@ -1,6 +1,6 @@
 <template>
     <v-content>
-        <v-layout justify-start row wrap class="pa-5">
+        <v-layout justify-start row wrap class="pa-2">
             <ManagementBox v-for="x in getContestData" :key="x.name" :data="x"/>
         </v-layout>
     </v-content>

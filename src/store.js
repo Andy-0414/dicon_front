@@ -12,17 +12,33 @@ export default new Vuex.Store({
 
         tagList: [
             {
+                "color": "green",
+                "text": "교내대회"
+            },
+            {
+                "color": "green",
+                "text": "외부대회"
+            },
+            {
+                "color": "red",
+                "text": "초등"
+            },
+            {
+                "color": "red",
+                "text": "중등"
+            },
+            {
                 "color": "red",
                 "text": "고등"
+            },
+            {
+                "color": "red",
+                "text": "대학"
             },
             {
                 "color": "orange",
                 "text": "해커톤"
             },
-            {
-                "color": "orange",
-                "text": "교내대회"
-            }
         ],
         userData: null,
         contestData: []
