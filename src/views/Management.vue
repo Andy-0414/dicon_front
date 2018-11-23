@@ -20,9 +20,7 @@
         },
         computed: {
             getContestData() {
-                return this.$store.state.contestData.filter((item, index, array) =>{
-                    return item.isJoin
-                })
+                return this.$store.state.contestData
             }
         }
     } 
