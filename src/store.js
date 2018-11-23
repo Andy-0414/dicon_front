@@ -7,8 +7,23 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         showMenu: true,
+        menuLock: false,
         mainPath: "http://58.145.101.15:3030",
 
+        tagList: [
+            {
+                "color": "red",
+                "text": "고등"
+            },
+            {
+                "color": "orange",
+                "text": "해커톤"
+            },
+            {
+                "color": "orange",
+                "text": "교내대회"
+            }
+        ],
         userData: null,
         contestData: []
     },
@@ -18,6 +33,15 @@ export default new Vuex.Store({
         },
         setContest(state, data) {
             state.contestData = data
+        },
+        toggleMenu(state, data) {
+            if (data)
+                state.showMenu = data;
+            else if(!state.menuLock)
+                state.showMenu = !state.showMenu
+        },
+        menuLock(state, data) {
+            state.menuLock = data;
         }
     },
     actions: {
@@ -27,7 +51,7 @@ export default new Vuex.Store({
                 withCredentials: true,
             })
                 .then(data => {
-                    commit('setUser',data.data)
+                    commit('setUser', data.data)
                 })
                 .catch(err => {
                     commit('setUser', null)
@@ -38,6 +62,6 @@ export default new Vuex.Store({
                 .then(data => {
                     commit('setContest', data.data)
                 })
-        }
+        },
     }
 })

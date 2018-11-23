@@ -12,7 +12,7 @@
         <v-toolbar-side-icon large @click.stop="changeShowMenu()"></v-toolbar-side-icon>
         <v-toolbar-title class="headline">{{serviceName}}</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-layout align-center justify-end row fill-height style="min-width:300px">
+        <v-layout align-center justify-end row fill-height style="min-width:450px">
             <router-link to="/management"><v-btn flat color="white" class="subheading">대회 관리</v-btn></router-link>
             <router-link to="/my"><v-btn flat color="white" class="subheading">내 참여 대회</v-btn></router-link>
             <router-link to="/myinfo"><v-btn flat color="white" class="subheading">계정관리</v-btn></router-link>
@@ -38,7 +38,7 @@
         },
         methods: {
             changeShowMenu() {
-                this.$store.state.showMenu = !this.$store.state.showMenu
+                this.$store.commit('toggleMenu')
             },
             logout() {
                 axios.post(this.$store.state.mainPath + "/auth/logout")
@@ -46,7 +46,7 @@
                         this.$store.state.userData = null
                     })
                     .catch(() => {
-
+                        this.$store.state.userData = null
                     })
             }
         }
@@ -54,7 +54,4 @@
 </script>
 
 <style scoped>
-    a{
-        text-decoration: none;
-    }
 </style>

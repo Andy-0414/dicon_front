@@ -73,6 +73,7 @@
 
                             setTimeout(() => {
                                 this.$store.state.userData = data.data
+                                this.$store.dispatch('getContest')
                                 
                                 this.reqLoading = false
                                 this.loginFail = false

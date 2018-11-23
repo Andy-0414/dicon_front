@@ -49,4 +49,8 @@
     ::-webkit-scrollbar-thumb {
         background-color: rgba(0, 0, 0, 0.2);
     }
+
+    a{
+        text-decoration: none;
+    }
 </style>

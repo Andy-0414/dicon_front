@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer clipped fixed app width="350" :value="getShowMenu">
+    <v-navigation-drawer clipped fixed app width="350" :value="getShowMenu" disable-resize-watcher>
         <v-list two-line class="mx-2">
             <v-subheader class="title mt-3 grey--text text--darken-5">조건</v-subheader>
             <v-list-tile>
@@ -27,7 +27,7 @@
             </v-list-tile>
             <v-subheader class="title mt-5 grey--text text--darken-5">검색</v-subheader>
             <v-list-tile>
-                <v-combobox :items="tagList" :search-input.sync="search" v-model="tags" hide-selected label="태그"
+                <v-combobox :items="getTagList" :search-input.sync="search" v-model="tags" hide-selected label="태그"
                     multiple small-chips :menu-props="{nudgeRight:'300'}">
                     <template slot="no-data">
                         <v-list-tile>
@@ -62,20 +62,6 @@
             degreeItem: ['초등', '중등', '고등', '대학'],
             ableItem: ["가능", "불가능"],
             search: null,
-            tagList: [
-                {
-                    "color": "red",
-                    "text": "고등"
-                },
-                {
-                    "color": "orange",
-                    "text": "해커톤"
-                },
-                {
-                    "color": "orange",
-                    "text": "교내대회"
-                }
-            ],
 
             searchDegree: [],
             searchStartDate: null,
@@ -91,7 +77,7 @@
                 this.tags = tags.map(v => {
                     var isString = typeof v === 'string'
                     if (isString) {
-                        var obj = this.tagList.find(x=>x.text == v)
+                        var obj = this.getTagList.find(x=>x.text == v)
                         if(!(obj === undefined)) return obj
                         v = {
                             text: v,
@@ -112,6 +98,9 @@
         computed: {
             getShowMenu() {
                 return this.$store.state.showMenu
+            },
+            getTagList() {
+                return this.$store.state.tagList
             }
         },
     }

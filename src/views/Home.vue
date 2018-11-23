@@ -28,6 +28,10 @@
         data: () => ({
 
         }),
+        created: function (){
+            this.$store.commit('toggleMenu',true);
+            this.$store.commit('menuLock',false);
+        },
         components: {
             CompetitionBox,
         },
