@@ -1,6 +1,6 @@
 <template>
     <v-content>
-        <ContestSetting :data="getContestDataId" />
+        <ContestSetting :data="getContestDataId" v-if="getContestDataId"/>
     </v-content>
 </template>
 
@@ -18,9 +18,12 @@
         created: function () {
             this.$store.commit('toggleMenu', false);
             this.$store.commit('menuLock', true);
+            //if(this.getContestDataId === undefined) this.$router.push("/")
         },
         components: {
             ContestSetting
+        },
+        methods:{
         },
         computed: {
             getContestDataId() {

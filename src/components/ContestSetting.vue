@@ -2,7 +2,18 @@
     <v-layout row wrap>
         <v-flex sm12 md4 lg3>
             <v-card class="pa-2 ma-3">
-                <v-img :src="data.img" aspect-ratio="1" />
+                <v-img :src="getNewImage" aspect-ratio="1" v-if="data.img">
+                    <v-layout align-center justify-center row fill-height>
+                        <v-text-field label="이미지" v-model='imageName' @click="pickFile" prepend-icon='attach_file'></v-text-field>
+                        <input
+                            type="file"
+                            style="display: none"
+                            ref="image"
+                            accept="image/*"
+                            @change="onFilePicked"
+                        >
+                    </v-layout>
+                </v-img>
                 <v-card-title primary-title>
                     <v-text-field class="headline" v-model="data.name"></v-text-field>
                 </v-card-title>
@@ -13,13 +24,13 @@
                             offset-y full-width min-width="290px">
                             <v-text-field slot="activator" v-model="data.date.startDate" label="시작 날짜" prepend-icon="event"
                                 readonly></v-text-field>
-                            <v-date-picker ref="picker" v-model="data.date.startDate" :max="data.endDate"></v-date-picker>
+                            <v-date-picker ref="picker" v-model="data.date.startDate" :max="data.date.endDate"></v-date-picker>
                         </v-menu>
                         <v-menu :close-on-content-click="false" :nudge-right="200" lazy transition="scale-transition"
                             offset-y full-width min-width="290px">
                             <v-text-field slot="activator" v-model="data.date.endDate" label="끝 날짜" prepend-icon="event"
                                 readonly></v-text-field>
-                            <v-date-picker ref="picker" v-model="data.date.endDate"></v-date-picker>
+                            <v-date-picker ref="picker" v-model="data.date.endDate" :min="data.date.startDate"></v-date-picker>
                         </v-menu>
                         <v-combobox :items="getTagList" :search-input.sync="search" v-model="tags" hide-selected label="태그"
                             multiple small-chips :menu-props="{nudgeRight:'300'}">
@@ -38,7 +49,8 @@
                             </template>
                         </v-combobox>
                     </div>
-                    <v-btn flat block color="green" class="headline" @click="sendServer()">저장</v-btn>
+                    <v-btn flat block color="green" class="headline" @click="sendServer()" v-if="!isCreated">저장</v-btn>
+                    <v-btn flat block color="green" class="headline" @click="sendCreateServer()" v-else>생성</v-btn>
                 </v-card-text>
             </v-card>
         </v-flex>
@@ -131,11 +143,13 @@
 </template>
 
 <script>
+    import axios from 'axios';
 
     export default {
         name: 'ContestSetting',
         props: {
-            data: Object
+            data: Object,
+            isCreated: Boolean
         },
         data: () => ({
             dialog: false,
@@ -145,6 +159,10 @@
             type: null,
 
             tags: [],
+
+            imageName: '',
+            imageFile: '',
+            tmpImg:'',
 
             notDataRule: [v => !!v || '필수 입력'],
             typeList: ['text', 'checkbox', 'select', 'switch']
@@ -176,6 +194,30 @@
             }
         },
         methods: {
+            pickFile () {
+                this.$refs.image.click()
+            },
+            onFilePicked (e) {
+                const files = e.target.files
+                if(files[0] !== undefined) {
+                    this.imageName = files[0].name
+                    if(this.imageName.lastIndexOf('.') <= 0) {
+                        return
+                    }
+                    const fr = new FileReader ()
+                    fr.readAsDataURL(files[0])
+                    fr.addEventListener('load', () => {
+                        this.tmpImg = fr.result
+                        this.imageFile = files[0] // this is an image file that can be sent to server...
+                        console.log(this.imageName)
+                    })
+                } else {
+                    this.imageName = ''
+                    this.imageFile = ''
+                    this.tmpImg = ''
+                }
+            },
+
             deleteList(index) {
                 this.data.question.splice(index, 1)
             },
@@ -184,7 +226,7 @@
                     this.data.question.push({
                         type: type,
                         label: null,
-                        data: [],
+                        data: (type == 'text' || type == 'switch' ? "" : []),
                     })
                     this.dialog = false
                 }
@@ -196,12 +238,77 @@
                 this.data.question[index].data.splice(idx, 1)
             },
             sendServer() {
-                console.log(this.data)
+                this.data.tags = this.tags
+                axios(this.$store.state.mainPath + "/contest/updateContest", {
+                    method: "post",
+                    //withCredentials: true,
+                    data: {
+                        data: this.data,
+                        img: this.imageFile
+                    }
+                })
+                    .then(data => {
+                        let formData = new FormData();
+                        formData.append('id', data.data.id);
+                        formData.append('img', this.imageFile);
+                        axios(this.$store.state.mainPath + "/contest/imgUpload",{
+                            method: "post",
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            },
+                            data: formData
+                            //withCredentials: true,
+                        }).then((data)=>{console.log("clear!")}).catch(err=>{console.log("notclear!")})
+
+                        this.$store.dispatch('getContest')
+                        this.$router.push("/")
+                    })
+                    .catch(data => {
+                        this.$router.push("/")
+                    })
+            },
+            sendCreateServer() {
+                this.data.tags = this.tags
+                this.data.img = this.imageName
+                
+                axios(this.$store.state.mainPath + "/contest/createContest",{
+                    method: "post",
+                    data: {
+                        data: this.data
+                    }
+                    //withCredentials: true,
+                })
+                    .then(data => {
+                        let formData = new FormData();
+                        formData.append('id', data.data.id);
+                        formData.append('img', this.imageFile);
+                        axios(this.$store.state.mainPath + "/contest/imgUpload",{
+                            method: "post",
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            },
+                            data: formData
+                            //withCredentials: true,
+                        }).then((data)=>{console.log("clear!")}).catch(err=>{console.log("notclear!")})
+
+                        this.$store.dispatch('getContest')
+                        this.$router.push("/")
+                    })
+                    .catch(data => {
+                        this.$router.push("/")
+                    })
             }
         },
         computed: {
             getTagList() {
                 return this.$store.state.tagList
+            },
+            getMainPath() {
+                return this.$store.state.mainPath
+            },
+            getNewImage(){
+                if(this.tmpImg) return this.tmpImg
+                else return `${this.getMainPath}/${this.data.img}`
             }
         }
     } 

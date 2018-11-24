@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import My from './views/My.vue'
 import Management from './views/Management.vue'
 import ManagementContest from './views/ManagementContest.vue'
+import CreateContest from './views/CreateContest.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
             path: '/management',
             name: 'Management',
             component: Management
+        },
+        {
+            path: '/management/create',
+            name: 'CreateContest',
+            component: CreateContest
         },
         {
             path: '/management/:id',
