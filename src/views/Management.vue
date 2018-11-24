@@ -19,10 +19,10 @@
 
         }),
         created: function(){
+            if(!this.$store.state.userData) this.$router.push("/")
             this.$store.commit('toggleMenu', false);
             this.$store.commit('menuLock', true);
             this.$store.dispatch('getUser')
-            if(!this.$store.state.userData) this.$router.push("/")
         },
         components: {
             ManagementBox

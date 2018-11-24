@@ -29,9 +29,9 @@
 
         }),
         created: function (){
+            if(!this.$store.state.userData) this.$router.push("/")
             this.$store.commit('toggleMenu',true);
             this.$store.commit('menuLock',false);
-            if(!this.$store.state.userData) this.$router.push("/")
         },
         components: {
             CompetitionBox,

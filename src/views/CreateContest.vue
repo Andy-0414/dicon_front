@@ -28,9 +28,9 @@
             }
         }),
         created: function () {
+            if(!this.$store.state.userData) this.$router.push("/")
             this.$store.commit('toggleMenu', false);
             this.$store.commit('menuLock', true);
-            //if (!this.$store.state.userData) this.$router.push("/")
         },
         components: {
             ContestSetting
