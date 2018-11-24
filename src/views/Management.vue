@@ -28,7 +28,9 @@
         },
         computed: {
             getContestData() {
-                return this.$store.state.contestData
+                return this.$store.state.contestData.filter((item, index, array) =>{
+                    return (this.$store.state.userData.ownerContest.indexOf(item.id) != -1)
+                })
             }
         }
     } 

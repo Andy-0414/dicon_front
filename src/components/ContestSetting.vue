@@ -209,7 +209,6 @@
                     fr.addEventListener('load', () => {
                         this.tmpImg = fr.result
                         this.imageFile = files[0] // this is an image file that can be sent to server...
-                        console.log(this.imageName)
                     })
                 } else {
                     this.imageName = ''
