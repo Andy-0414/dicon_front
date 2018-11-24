@@ -12,7 +12,7 @@
             </v-card-text>
             <v-card-actions>
                 <v-layout align-end justify-end row fill-height wrap>
-                    <v-btn flat color="green" class="subheading" :href="'/management/'+data.id">대회 설정 변경</v-btn>
+                    <router-link :to="'/management/'+data.id"><v-btn flat color="green" class="subheading">대회 설정 변경</v-btn></router-link>
                     <v-btn flat color="red" class="subheading" @click="deleteThisContest(data.id)">대회 폐쇠</v-btn>
                 </v-layout>
             </v-card-actions>
