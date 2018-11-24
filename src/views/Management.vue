@@ -21,7 +21,8 @@
         created: function(){
             this.$store.commit('toggleMenu', false);
             this.$store.commit('menuLock', true);
-            //if(!this.$store.state.userData) this.$router.push("/")
+            this.$store.dispatch('getUser')
+            if(!this.$store.state.userData) this.$router.push("/")
         },
         components: {
             ManagementBox

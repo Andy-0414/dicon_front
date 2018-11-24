@@ -18,7 +18,7 @@
         created: function () {
             this.$store.commit('toggleMenu', false);
             this.$store.commit('menuLock', true);
-            //if(this.getContestDataId === undefined) this.$router.push("/")
+            if(this.getContestDataId === undefined) this.$router.push("/")
         },
         components: {
             ContestSetting
