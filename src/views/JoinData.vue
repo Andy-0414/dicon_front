@@ -1,5 +1,5 @@
 <template>
-    <v-content>
+    <v-content class="backColor">
         <v-layout row wrap>
             <v-flex sm12 md4 lg3>
                 <v-card class="pa-2 ma-3">
@@ -11,7 +11,7 @@
                             </tr>
                         </template>
                         <template slot="no-data">
-                            <v-alert :value="true" color="error" icon="warning" outline>
+                            <v-alert :value="true" color="error" icon="warning">
                                 데이터가 없습니다.
                             </v-alert>
                         </template>

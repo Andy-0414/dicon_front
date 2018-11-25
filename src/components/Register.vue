@@ -3,7 +3,7 @@
         <v-btn slot="activator" flat color="orange lighten-4" class="subheading">회원가입</v-btn>
         <v-card>
             <v-card-title>
-                <span class="headline pl-3 pt-3">회원가입</span>
+                <span class="headline pl-3 pt-3 nameColor font-weight-bold">회원가입</span>
             </v-card-title>
             <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
@@ -24,11 +24,11 @@
                         <v-flex xs12>
                             <v-text-field v-model="age" label="나이" required></v-text-field>
                         </v-flex>
-                        <v-switch v-model="isAcceptance" :label="`이메일 수신 동의 여부`"></v-switch>
-                        <v-alert :value="regFail" color="error" icon="warning" transition="scale-transition" outline>
+                        <v-switch v-model="isAcceptance" :label="`이메일 수신 동의 여부`" color="rgb(92,49,143)"></v-switch>
+                        <v-alert :value="regFail" color="error" icon="warning" transition="scale-transition">
                             {{errMsg}}
                         </v-alert>
-                        <v-alert :value="regSucc" color="success" icon="check_circle" transition="scale-transition" outline>
+                        <v-alert :value="regSucc" color="success" icon="check_circle" transition="scale-transition">
                             회원가입에 성공하였습니다.
                         </v-alert>
                     </v-container>
@@ -36,8 +36,8 @@
             </v-card-text>
             <v-card-actions class="pb-3">
                 <v-spacer></v-spacer>
-                <v-btn color="red darken-1" flat @click.native="dialog = false">취소</v-btn>
-                <v-btn :disabled="!valid" color="orange darken-1" flat @click.native="register" :loading="reqLoading">회원가입</v-btn>
+                <v-btn color="red accent-4" flat @click.native="dialog = false">취소</v-btn>
+                <v-btn :disabled="!valid" color="deep-purple darken-4" flat @click.native="register" :loading="reqLoading">회원가입</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>

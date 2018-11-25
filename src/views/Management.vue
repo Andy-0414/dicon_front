@@ -1,13 +1,13 @@
 <template>
-    <v-content>
+    <v-content class="backColor">
         <v-layout justify-start align-center row wrap class="pa-2">
             <ManagementBox v-for="x in getContestData" :key="x.name" :data="x" />
             <v-flex d-flex xs12 sm3>
                 <router-link to="/management/create">
-                    <v-card class="pa-2 ma-3" ripple color="rgba(0,0,0,0.2)">
+                    <v-card class="pa-2 ma-3" ripple color="rgba(92,49,143,0.2)">
                         <v-responsive :aspect-ratio="1">
                             <v-layout justify-center align-center fill-height>
-                                <v-icon large color="green">add_box</v-icon>
+                                <v-icon large color="rgb(92,49,143)">add_box</v-icon>
                             </v-layout>
                         </v-responsive>
                     </v-card>

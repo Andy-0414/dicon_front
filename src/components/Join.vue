@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition" scrollable>
-        <v-btn slot="activator" flat color="orange" class="subheading" :disabled="!data.isApplicable">신청</v-btn>
+        <v-btn slot="activator" flat color="rgb(92,49,143)" class="subheading" :disabled="!data.isApplicable">신청</v-btn>
         <v-card color="rgba(33,33,33,0.9)">
             <v-card-text class="ma-0 pa-0 scroll-y">
                 <v-img :src="`${getMainPath}/${data.img}`" aspect-ratio="3" gradient="to right, rgba(21,21,21,1), rgba(0,0,0,.5)">
@@ -11,7 +11,7 @@
                             </v-btn>
                         </v-layout>
                         <v-card-title class="white--text pl-5">
-                            <div class="display-3 px-5 pt-5">{{data.name}}</div>
+                            <div class="display-3 px-5 pt-5 font-weight-bold">{{data.name}}</div>
                         </v-card-title>
                         <v-card-title class="white--text pl-5">
                             <div>
@@ -37,7 +37,7 @@
                     <v-flex xs11 sm10 lg8>
                         <v-btn block large class="title" :href="data.link" v-if="data.link">외부 링크</v-btn>
                         <v-form ref="form" v-model="valid" lazy-validation v-else>
-                            <v-card flat v-for="(i,index) in data.question" :key="i.label" class="my-5 px-2 pt-2" color="rgba(0,0,0,0.0)">
+                            <v-card flat v-for="(i,index) in data.question" :key="i.label" class="my-5 px-2 pt-2" color="rgba(0,0,0,0.0)" dark>
                                 <v-card-title class="headline">{{i.label}}</v-card-title>
                                 <v-card-text>
                                     <v-flex xs12>
@@ -47,11 +47,11 @@
                                             :rules="notArrayRule" v-model="inData[index]" required />
                                         <v-text-field v-else-if="i.type == 'text'" :label="i.data" flat solo v-model="inData[index]"
                                             :rules="notDataRule" required />
-                                        <v-switch v-else-if="i.type == 'switch'" v-model="inData[index]" :label="i.data" />
+                                        <v-switch v-else-if="i.type == 'switch'" v-model="inData[index]" :label="i.data" color="rgb(92,49,143)"/>
                                     </v-flex>
                                 </v-card-text>
                             </v-card>
-                            <v-btn :disabled="!valid || !data.isApplicable" @click="sendData" block large class="title mb-5">제출</v-btn>
+                            <v-btn :disabled="!valid || !data.isApplicable" @click="sendData" block large color="rgb(23, 23, 23)" dark class="title mb-5">제출</v-btn>
                         </v-form>
                     </v-flex>
                 </v-layout>
@@ -100,9 +100,6 @@
             }
         },
         watch: {
-            inData(d) {
-                console.log(d)
-            }
         },
         computed: {
             getMainPath() {

@@ -1,26 +1,26 @@
 <template>
     <v-flex d-flex xs12 sm4>
         <v-hover>
-            <v-card class="pa-2 ma-3" slot-scope="{ hover }" :color='(data.isJoin ? "grey darken-2" : "")'>
+            <v-card class="pa-2 ma-3" slot-scope="{ hover }" :color='(data.isJoin ? "deep-purple lighten-5" : "")'>
                 <v-img :src="`${getMainPath}/${data.img}`" aspect-ratio="1">
                     <v-expand-transition>
                         <div v-if="(hover && data.isApplicable)" class="d-flex transition-fast-in-fast-out green darken-3 title v-card--reveal white--text"
                             style="height: 30px">
                             신청가능
                         </div>
-                        <div v-if="(hover && !data.isApplicable)" class="d-flex transition-fast-in-fast-out red darken-3 title v-card--reveal white--text"
+                        <div v-if="(hover && !data.isApplicable)" class="d-flex transition-fast-in-fast-out red accent-4 title v-card--reveal white--text"
                             style="height: 30px;">
                             신청불가
                         </div>
                     </v-expand-transition>
                 </v-img>
                 <v-card-title primary-title>
-                    <h3 class="headline">{{data.name}}</h3>
+                    <h3 class="headline nameColor font-weight-bold">{{data.name}}</h3>
                 </v-card-title>
                 <v-card-text>
                     <div>
-                        <div class="text-truncate">{{data.content}}</div>
-                        <div class="grey--text">{{`${data.date.startDate} ~ ${data.date.endDate}`}} </div>
+                        <div class="text-truncate contentColor">{{data.content}}</div>
+                        <div class="contentColor">{{`${data.date.startDate} ~ ${data.date.endDate}`}} </div>
                         <div>
                             <v-chip label small v-for="x in data.tags" :key="x.text" :color="x.color+' lighten-3'">
                                 {{ x.text }}
@@ -31,7 +31,7 @@
                 <v-card-actions>
                     <v-layout align-end justify-end row fill-height v-if="data.isJoin">
                         <v-btn flat color="green" class="subheading">신청 완료</v-btn>
-                        <v-btn flat color="red" class="subheading" @click="detachContest">신청 취소</v-btn>
+                        <v-btn flat color="red accent-4" class="subheading" @click="detachContest">신청 취소</v-btn>
                     </v-layout>
                     <v-layout align-end justify-end row fill-height v-else>
                         <Join :data="data" />

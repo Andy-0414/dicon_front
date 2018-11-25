@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar app fixed clipped-left height="65" v-if="!this.$store.state.userData" color="orange darken-4" dark>
+    <v-toolbar app fixed clipped-left height="65" v-if="!this.$store.state.userData" color="rgb(92,49,143)" dark flat>
         <v-toolbar-side-icon large @click.stop="changeShowMenu()"></v-toolbar-side-icon>
         <v-toolbar-title class="headline">{{serviceName}}</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -8,7 +8,7 @@
             <Register />
         </v-layout>
     </v-toolbar>
-    <v-toolbar app fixed clipped-left height="65" v-else color="orange darken-4" dark>
+    <v-toolbar app fixed clipped-left height="65" v-else color="rgb(92,49,143)" dark flat>
         <v-toolbar-side-icon large @click.stop="changeShowMenu()"></v-toolbar-side-icon>
         <v-toolbar-title class="headline">{{serviceName}}</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -23,17 +23,17 @@
                     <v-layout align-center justify-end row wrap fill-height>
                         <v-flex xs12>
                             <router-link to="/management">
-                                <v-btn flat color="white" class="subheading" block>대회 관리</v-btn>
+                                <v-btn flat class="subheading" block>대회 관리</v-btn>
                             </router-link>
                         </v-flex>
                         <v-flex xs12>
                             <router-link to="/my">
-                                <v-btn flat color="white" class="subheading" block>내 참여 대회</v-btn>
+                                <v-btn flat color="" class="subheading" block>내 참여 대회</v-btn>
                             </router-link>
                         </v-flex>
                         <v-flex xs12>
                             <router-link to="/myinfo">
-                                <v-btn flat color="white" class="subheading" block>계정관리</v-btn>
+                                <v-btn flat color="" class="subheading" block>계정관리</v-btn>
                             </router-link>
                         </v-flex>
                         <v-flex xs12>

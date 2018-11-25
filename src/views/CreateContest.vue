@@ -1,5 +1,5 @@
 <template>
-    <v-content>
+    <v-content class="backColor">
         <ContestSetting :data="dataForm" isCreated />
     </v-content>
 </template>

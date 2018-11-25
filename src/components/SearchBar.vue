@@ -1,15 +1,15 @@
 <template>
-    <v-navigation-drawer clipped fixed app width="350" :value="getShowMenu" disable-resize-watcher>
+    <v-navigation-drawer clipped fixed app width="350" :value="getShowMenu" disable-resize-watcher style="background-color: #24315e;" dark>
         <v-list two-line class="mx-2">
-            <v-subheader class="title mt-3 grey--text text--darken-5">조건</v-subheader>
+            <v-subheader class="title mt-3 subColor">조건</v-subheader>
             <v-list-tile>
                 <v-select v-model="searchDegree" :items="degreeItem" label="참여대상" multiple :menu-props="{nudgeRight:'300'}" @change="searchData">
                 </v-select>
             </v-list-tile>
             <v-list-tile>
-                <v-switch v-model="searchApplicable" label="신청 가능 여부" @change="searchData"></v-switch>
+                <v-switch v-model="searchApplicable" label="신청 가능 여부" @change="searchData" color="rgb(92,49,143)"></v-switch>
             </v-list-tile>
-            <v-subheader class="title mt-5 grey--text text--darken-5">기한</v-subheader>
+            <v-subheader class="title mt-5 subColor">기한</v-subheader>
             <v-list-tile>
                 <v-menu :close-on-content-click="false" :nudge-right="200" lazy transition="scale-transition" offset-y
                     full-width min-width="290px">
@@ -25,7 +25,7 @@
                     <v-date-picker ref="picker" v-model="searchEndDate" @change="searchData" :min="searchStartDate"></v-date-picker>
                 </v-menu>
             </v-list-tile>
-            <v-subheader class="title mt-5 grey--text text--darken-5">검색</v-subheader>
+            <v-subheader class="title mt-5 subColor">검색</v-subheader>
             <v-list-tile>
                 <v-combobox :items="getTagList" :search-input.sync="search" v-model="searchTags" hide-selected label="태그"
                     multiple small-chips :menu-props="{nudgeRight:'300'}" @change="searchData">
@@ -100,22 +100,22 @@
                     return (item.isApplicable == this.searchApplicable || !this.searchApplicable)
                 })
                 this.$store.state.searchData = this.$store.state.searchData.filter((item, index, array) =>{
-                    var count;
+                    var count = 0;
                     this.searchTags.forEach(x=>{
-                        count =(item.tags.findIndex(_x=>{
+                        count += (item.tags.findIndex(_x=>{
                             return (_x.text == x.text || _x.text == x)
-                        }) != -1 ? 1 : -1)
+                            }) != -1)
                     })
-                    return (count != -1)
+                    return (count == this.searchTags.length)
                 })
                 this.$store.state.searchData = this.$store.state.searchData.filter((item, index, array) =>{
-                    var count;
+                    var count = 0;
                     this.searchDegree.forEach(x=>{
-                        count =(item.tags.findIndex(_x=>{
+                        count += (item.tags.findIndex(_x=>{
                             return _x.text == x
-                        }) != -1 ? 1 : -1)
+                            }) != -1)
                     })
-                    return (count != -1)
+                    return (count == this.searchDegree.length)
                 })
                 this.$store.state.searchData = this.$store.state.searchData.filter((item, index, array) =>{
                     if(this.searchStartDate)
@@ -157,6 +157,10 @@
 
 <style scoped>
     hr {
-        width: 80%
+        width: 80%;
+    }
+    .subColor{
+        font-weight: 700;
+        color:rgb(80, 230, 255);
     }
 </style>

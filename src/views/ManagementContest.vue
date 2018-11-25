@@ -1,5 +1,5 @@
 <template>
-    <v-content>
+    <v-content class="backColor"> 
         <ContestSetting :data="getContestDataId" v-if="getContestDataId"/>
     </v-content>
 </template>

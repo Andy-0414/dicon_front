@@ -15,7 +15,7 @@
                     </v-layout>
                 </v-img>
                 <v-card-title primary-title>
-                    <v-text-field class="headline" v-model="data.name"></v-text-field>
+                    <v-text-field class="headline nameColor font-weight-bold" v-model="data.name"></v-text-field>
                 </v-card-title>
                 <v-card-text>
                     <div>
@@ -48,7 +48,7 @@
                                 </v-chip>
                             </template>
                         </v-combobox>
-                        <v-switch v-model="data.isApplicable" :color="data.isApplicable ? 'green' : 'red'" :label="data.isApplicable ? '참가 가능' : '참가 불가'"></v-switch>
+                        <v-switch v-model="data.isApplicable" :color="data.isApplicable ? 'rgb(92,49,143)' : 'red'" :label="data.isApplicable ? '참가 가능' : '참가 불가'"></v-switch>
                     </div>
                     <v-btn flat block color="green" class="headline" @click="sendServer()" v-if="!isCreated">저장</v-btn>
                     <v-btn flat block color="green" class="headline" @click="sendCreateServer()" v-else>생성</v-btn>
@@ -132,7 +132,7 @@
                             </v-card-text>
                             <v-card-actions class="pb-3">
                                 <v-spacer></v-spacer>
-                                <v-btn color="red" flat @click.native="dialog = false">취소</v-btn>
+                                <v-btn color="red accent-4" flat @click.native="dialog = false">취소</v-btn>
                                 <v-btn color="green" flat :disable="!valid" @click="createList(type)">추가</v-btn>
                             </v-card-actions>
                         </v-card>

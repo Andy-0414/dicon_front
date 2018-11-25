@@ -3,7 +3,7 @@
         <v-btn slot="activator" flat color="white" class="subheading">로그인</v-btn>
         <v-card>
             <v-card-title>
-                <span class="headline pl-3 pt-3">로그인</span>
+                <span class="headline pl-3 pt-3 nameColor font-weight-bold">로그인</span>
             </v-card-title>
             <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
@@ -15,11 +15,11 @@
                             <v-text-field prepend-icon="lock" v-model="password" label="비밀번호" type="password" :rules="passwordRule" name="password"
                                 required></v-text-field>
                         </v-flex>
-                        <v-alert :value="loginFail" color="error" icon="warning" transition="scale-transition" outline>
+                        <v-alert :value="loginFail" color="error" icon="warning" transition="scale-transition" >
                             로그인에 실패하였습니다.
                         </v-alert>
                         <v-alert :value="loginSucc" color="success" icon="check_circle" transition="scale-transition"
-                            outline>
+                            >
                             로그인에 성공하였습니다.
                         </v-alert>
                     </v-container>
@@ -27,8 +27,8 @@
             </v-card-text>
             <v-card-actions class="pb-3">
                 <v-spacer></v-spacer>
-                <v-btn color="red darken-1" flat @click.native="dialog = false">취소</v-btn>
-                <v-btn :disabled="!valid" color="orange darken-1" flat @click.native="login" :loading="reqLoading">로그인</v-btn>
+                <v-btn color="red accent-4" flat @click.native="dialog = false">취소</v-btn>
+                <v-btn :disabled="!valid" color="deep-purple darken-4" flat @click.native="login" :loading="reqLoading">로그인</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -73,7 +73,7 @@
 
                             setTimeout(() => {
                                 this.$store.state.userData = data.data
-                                this.$store.dispatch('getContest').then(()=>{console.log(this.$store.state.userData)})
+                                this.$store.dispatch('getContest')
                                 
                                 this.reqLoading = false
                                 this.loginFail = false
