@@ -51,7 +51,7 @@
                                     </v-flex>
                                 </v-card-text>
                             </v-card>
-                            <v-btn :disabled="!valid || !data.isApplicable" @click="sendData" block large color="rgb(23, 23, 23)" dark class="title mb-5">제출</v-btn>
+                            <v-btn :disabled="!valid || !data.isApplicable || !this.$store.state.userData" @click="sendData" block large color="rgb(23, 23, 23)" dark class="title mb-5">제출</v-btn>
                         </v-form>
                     </v-flex>
                 </v-layout>
