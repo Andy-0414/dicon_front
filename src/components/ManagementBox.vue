@@ -1,5 +1,5 @@
 <template>
-    <v-flex d-flex xs12 sm4>
+    <v-flex d-flex xs12 sm3>
         <v-card class="pa-2 ma-3">
             <v-img :src="`${getMainPath}/${data.img}`" aspect-ratio="1"></v-img>
             <v-card-title primary-title>
