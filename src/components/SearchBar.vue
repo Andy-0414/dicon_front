@@ -95,9 +95,7 @@
         methods: {
             searchData() {
                 this.$store.state.searchToggle = true
-                this.$store.state.searchData = this.$store.state.contestData.filter((item, index, array) =>{
-                    return (item.name.indexOf(this.searchString) != -1 || !this.searchString)
-                })
+                this.$store.state.searchData = this.$store.state.contestData
                 this.$store.state.searchData = this.$store.state.contestData.filter((item, index, array) =>{
                     return (item.isApplicable == this.searchApplicable)
                 })
@@ -130,6 +128,9 @@
                         return new Date(this.searchEndDate).getTime() >= new Date(item.date.endDate).getTime()
                     else
                         return true
+                })
+                this.$store.state.searchData = this.$store.state.searchData.filter((item, index, array) =>{
+                    return (item.name.indexOf(this.searchString) != -1 || !this.searchString)
                 })
             },
             clearSearch(){
