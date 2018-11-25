@@ -61,6 +61,9 @@
 </template>
 
 <script>
+    
+    import axios from 'axios';
+
     export default {
         name: 'Join',
         props: {
@@ -78,7 +81,21 @@
         methods: {
             sendData() {
                 if (this.$refs.form.validate()) {
-                    console.log("OK")
+                    axios(this.$store.state.mainPath + "/join/joinContest",{
+                        method: "post",
+                        data: {
+                            id : this.data.id,
+                            data: this.inData
+                        }
+                        //withCredentials: true,
+                    })
+                    .then(data=>{
+                        this.$store.dispatch('getContest')
+                        this.$router.push("/")
+                    })
+                    .catch(err=>{
+                        console.log(err)
+                    })
                 }
             }
         },

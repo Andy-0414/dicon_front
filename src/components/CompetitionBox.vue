@@ -29,9 +29,12 @@
                     </div>
                 </v-card-text>
                 <v-card-actions>
-                    <v-layout align-end justify-end row fill-height>
-                        <v-btn flat color="green" class="subheading" v-if="data.isJoin">신청완료</v-btn>
-                        <Join :data="data" v-else/>
+                    <v-layout align-end justify-end row fill-height v-if="data.isJoin">
+                        <v-btn flat color="green" class="subheading">신청 완료</v-btn>
+                        <v-btn flat color="red" class="subheading" @click="detachContest">신청 취소</v-btn>
+                    </v-layout>
+                    <v-layout align-end justify-end row fill-height v-else>
+                        <Join :data="data" />
                     </v-layout>
                 </v-card-actions>
             </v-card>
@@ -40,6 +43,8 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     import Join from './Join.vue'
 
     export default {
@@ -49,6 +54,23 @@
         },
         components: {
             Join
+        },
+        methods: {
+            detachContest() {
+                axios(this.$store.state.mainPath + "/join/detachContest", {
+                    method: "post",
+                    data: {
+                        id: this.data.id,
+                    }
+                    //withCredentials: true,
+                })
+                    .then(data => {
+                        this.$store.dispatch('getContest')
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
         },
         computed: {
             getMainPath() {

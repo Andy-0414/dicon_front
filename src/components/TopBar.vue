@@ -68,10 +68,14 @@
             logout() {
                 axios.post(this.$store.state.mainPath + "/auth/logout")
                     .then(() => {
+                        this.$store.dispatch('getContest')
                         this.$store.state.userData = null
+                        this.$router.push("/")
                     })
                     .catch(() => {
+                        this.$store.dispatch('getContest')
                         this.$store.state.userData = null
+                        this.$router.push("/")
                     })
             }
         },
