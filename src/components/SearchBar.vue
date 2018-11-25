@@ -7,7 +7,7 @@
                 </v-select>
             </v-list-tile>
             <v-list-tile>
-                <v-switch v-model="searchApplicable" label="신청여부" @change="searchData"></v-switch>
+                <v-switch v-model="searchApplicable" label="신청 가능 여부" @change="searchData"></v-switch>
             </v-list-tile>
             <v-subheader class="title mt-5 grey--text text--darken-5">기한</v-subheader>
             <v-list-tile>
@@ -66,7 +66,7 @@
             search: null,
 
             searchDegree: [],
-            searchApplicable: true,
+            searchApplicable: false,
             searchStartDate: null,
             searchEndDate: null,
             searchTags: [],
@@ -97,7 +97,7 @@
                 this.$store.state.searchToggle = true
                 this.$store.state.searchData = this.$store.state.contestData
                 this.$store.state.searchData = this.$store.state.contestData.filter((item, index, array) =>{
-                    return (item.isApplicable == this.searchApplicable)
+                    return (item.isApplicable == this.searchApplicable || !this.searchApplicable)
                 })
                 this.$store.state.searchData = this.$store.state.searchData.filter((item, index, array) =>{
                     var count;
