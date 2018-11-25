@@ -10,6 +10,11 @@
                                 <td class="subheading">{{ props.item.email }}</td>
                             </tr>
                         </template>
+                        <template slot="no-data">
+                            <v-alert :value="true" color="error" icon="warning" outline>
+                                데이터가 없습니다.
+                            </v-alert>
+                        </template>
                     </v-data-table>
                 </v-card>
             </v-flex>
