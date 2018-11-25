@@ -12,11 +12,36 @@
         <v-toolbar-side-icon large @click.stop="changeShowMenu()"></v-toolbar-side-icon>
         <v-toolbar-title class="headline">{{serviceName}}</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-layout align-center justify-end row fill-height style="min-width:450px">
-            <router-link to="/management"><v-btn flat color="white" class="subheading">대회 관리</v-btn></router-link>
-            <router-link to="/my"><v-btn flat color="white" class="subheading">내 참여 대회</v-btn></router-link>
-            <router-link to="/myinfo"><v-btn flat color="white" class="subheading">계정관리</v-btn></router-link>
-            <v-btn flat color="orange lighten-1" class="subheading" @click.native="logout">로그아웃</v-btn>
+        <v-layout align-center justify-end row fill-height>
+            <v-avatar size="40" color="grey lighten-4" class="ma-2"><v-img :src="getMainPath+'/noneImage.png'" aspect-ratio="1" /></v-avatar>
+            <div class="subheading">{{this.$store.state.userData.email}}</div>
+            <v-menu offset-y>
+                <v-btn slot="activator" dark icon large>
+                    <v-icon>more_vert</v-icon>
+                </v-btn>
+                <v-card style="max-width:150px;">
+                    <v-layout align-center justify-end row wrap fill-height>
+                        <v-flex xs12>
+                            <router-link to="/management">
+                                <v-btn flat color="white" class="subheading" block>대회 관리</v-btn>
+                            </router-link>
+                        </v-flex>
+                        <v-flex xs12>
+                            <router-link to="/my">
+                                <v-btn flat color="white" class="subheading" block>내 참여 대회</v-btn>
+                            </router-link>
+                        </v-flex>
+                        <v-flex xs12>
+                            <router-link to="/myinfo">
+                                <v-btn flat color="white" class="subheading" block>계정관리</v-btn>
+                            </router-link>
+                        </v-flex>
+                        <v-flex xs12>
+                            <v-btn flat color="orange lighten-1" class="subheading" @click.native="logout" block>로그아웃</v-btn>
+                        </v-flex>
+                    </v-layout>
+                </v-card>
+            </v-menu>
         </v-layout>
     </v-toolbar>
 </template>
@@ -30,7 +55,7 @@
     export default {
         name: 'topBar',
         data: () => ({
-            serviceName: "서비스 이름",
+            serviceName: "Cont_out",
         }),
         components: {
             Login,
@@ -48,6 +73,11 @@
                     .catch(() => {
                         this.$store.state.userData = null
                     })
+            }
+        },
+        computed: {
+            getMainPath() {
+                return this.$store.state.mainPath
             }
         }
     }
