@@ -65,15 +65,7 @@
                         this.joinData = data.data
                     })
                     .catch(err => {
-                        this.joinData = [
-    {
-        "email": "pjh8667@naver.com",
-        "answer": [
-            "Hello",
-            "fds"
-        ]
-    }
-]
+                        this.joinData = []
                     })
             }
         },
