@@ -98,6 +98,9 @@
                 this.$store.state.searchData = this.$store.state.contestData.filter((item, index, array) =>{
                     return (item.name.indexOf(this.searchString) != -1 || !this.searchString)
                 })
+                this.$store.state.searchData = this.$store.state.contestData.filter((item, index, array) =>{
+                    return (item.isApplicable == this.searchApplicable)
+                })
                 this.$store.state.searchData = this.$store.state.searchData.filter((item, index, array) =>{
                     var count;
                     this.searchTags.forEach(x=>{
