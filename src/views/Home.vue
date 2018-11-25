@@ -37,7 +37,10 @@
         },
         computed: {
             getContestData() {
-                return this.$store.state.contestData
+                if(this.$store.state.searchToggle)
+                    return this.$store.state.searchData
+                else
+                    return this.$store.state.contestData
             }
         }
     } 

@@ -55,7 +55,7 @@
     export default {
         name: 'topBar',
         data: () => ({
-            serviceName: "Cont_out",
+            serviceName: "Cont_our",
         }),
         components: {
             Login,

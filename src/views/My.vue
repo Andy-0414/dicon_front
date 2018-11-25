@@ -21,26 +21,33 @@
 <script>
     import CompetitionBox from '../components/CompetitionBox.vue'
 
-     export default {
+    export default {
         name: 'My',
         props: {
         },
         data: () => ({
 
         }),
-        created: function (){
-            if(!this.$store.state.userData) this.$router.push("/")
-            this.$store.commit('toggleMenu',true);
-            this.$store.commit('menuLock',false);
+        created: function () {
+            if (!this.$store.state.userData) this.$router.push("/")
+            this.$store.commit('toggleMenu', true);
+            this.$store.commit('menuLock', false);
         },
         components: {
             CompetitionBox,
         },
         computed: {
             getContestData() {
-                return this.$store.state.contestData.filter((item, index, array) =>{
-                    return item.isJoin
-                })
+                if (this.$store.state.searchToggle) {
+                    return this.$store.state.searchData.filter((item, index, array) => {
+                        return item.isJoin
+                    })
+                }
+                else {
+                    return this.$store.state.contestData.filter((item, index, array) => {
+                        return item.isJoin
+                    })
+                }
             }
         }
     } 
