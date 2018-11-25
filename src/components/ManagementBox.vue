@@ -7,7 +7,7 @@
             </v-card-title>
             <v-card-text>
                 <div>
-                    <div class="text-truncate">신청자 수 : ?</div>
+                    <div class="text-truncate">신청자 수 : {{getJoinData(data.id)}}</div>
                 </div>
             </v-card-text>
             <v-card-actions>
@@ -58,6 +58,18 @@
                         this.$store.dispatch('getContest')
                     })
                     .catch(data => {
+                    })
+            },
+            getJoinData(id) {
+                axios(this.$store.state.mainPath + "/join/getJoinData", {
+                    method: "post",
+                    data: { id: id }
+                })
+                    .then(data => {
+                        return data.data.length
+                    })
+                    .catch(err => {
+                        return 0
                     })
             }
         },
