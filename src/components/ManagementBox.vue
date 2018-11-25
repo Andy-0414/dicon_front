@@ -12,8 +12,20 @@
             </v-card-text>
             <v-card-actions>
                 <v-layout align-end justify-end row fill-height wrap>
+                    <router-link :to="'/joinData/'+data.id"><v-btn flat color="green" class="subheading">신청자 확인</v-btn></router-link>
                     <router-link :to="'/management/'+data.id"><v-btn flat color="green" class="subheading">대회 설정 변경</v-btn></router-link>
-                    <v-btn flat color="red" class="subheading" @click="deleteThisContest(data.id)">대회 폐쇠</v-btn>
+                    <v-dialog v-model="dialog" max-width="290">
+                        <v-btn slot="activator" flat color="red" class="subheading">대회 폐쇠</v-btn>
+                        <v-card>
+                            <v-card-title class="headline">'{{data.name}}'' 을 폐쇠하시겠습니까?</v-card-title>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn flat @click="dialog=false">취소</v-btn>
+                                <v-btn flat color="red" class="subheading" @click="deleteThisContest(data.id)">대회 폐쇠</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                    
                 </v-layout>
             </v-card-actions>
         </v-card>
@@ -28,6 +40,9 @@
         props: {
             data: Object
         },
+        data : ()=>({
+            dialog: false
+        }),
         created: function () {
         },
         methods:{

@@ -5,6 +5,7 @@ import My from './views/My.vue'
 import Management from './views/Management.vue'
 import ManagementContest from './views/ManagementContest.vue'
 import CreateContest from './views/CreateContest.vue'
+import JoinData from './views/JoinData.vue'
 
 Vue.use(Router)
 
@@ -38,13 +39,11 @@ export default new Router({
             component: ManagementContest,
             props: true
         },
-        // {
-        //   path: '/about',
-        //   name: 'about',
-        //   // route level code-splitting
-        //   // this generates a separate chunk (about.[hash].js) for this route
-        //   // which is lazy-loaded when the route is visited.
-        //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-        // }
+        {
+            path: '/joinData/:id',
+            name: 'JoinData',
+            component: JoinData,
+            props: true
+        },
     ]
 })
