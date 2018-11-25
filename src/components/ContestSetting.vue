@@ -48,6 +48,7 @@
                                 </v-chip>
                             </template>
                         </v-combobox>
+                        <v-switch v-model="data.isApplicable" :color="data.isApplicable ? 'green' : 'red'" :label="data.isApplicable ? '참가 가능' : '참가 불가'"></v-switch>
                     </div>
                     <v-btn flat block color="green" class="headline" @click="sendServer()" v-if="!isCreated">저장</v-btn>
                     <v-btn flat block color="green" class="headline" @click="sendCreateServer()" v-else>생성</v-btn>

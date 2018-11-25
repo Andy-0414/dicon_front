@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition" scrollable>
-        <v-btn slot="activator" flat color="orange" class="subheading">신청</v-btn>
+        <v-btn slot="activator" flat color="orange" class="subheading" :disabled="!data.isApplicable">신청</v-btn>
         <v-card color="rgba(33,33,33,0.9)">
             <v-card-text class="ma-0 pa-0 scroll-y">
                 <v-img :src="`${getMainPath}/${data.img}`" aspect-ratio="3" gradient="to right, rgba(21,21,21,1), rgba(0,0,0,.5)">
@@ -51,7 +51,7 @@
                                     </v-flex>
                                 </v-card-text>
                             </v-card>
-                            <v-btn :disabled="!valid" @click="sendData" block large class="title mb-5">제출</v-btn>
+                            <v-btn :disabled="!valid || !data.isApplicable" @click="sendData" block large class="title mb-5">제출</v-btn>
                         </v-form>
                     </v-flex>
                 </v-layout>
