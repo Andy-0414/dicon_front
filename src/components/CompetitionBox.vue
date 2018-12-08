@@ -6,11 +6,11 @@
                     <v-expand-transition>
                         <div v-if="(hover && data.isApplicable)" class="d-flex transition-fast-in-fast-out green darken-3 title v-card--reveal white--text"
                             style="height: 30px">
-                            신청가능
+                            신청 가능
                         </div>
                         <div v-if="(hover && !data.isApplicable)" class="d-flex transition-fast-in-fast-out red accent-4 title v-card--reveal white--text"
                             style="height: 30px;">
-                            신청불가
+                            신청 불가
                         </div>
                     </v-expand-transition>
                 </v-img>

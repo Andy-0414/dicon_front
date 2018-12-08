@@ -33,7 +33,7 @@
                         </v-flex>
                         <v-flex xs12>
                             <router-link to="/myinfo">
-                                <v-btn flat color="" class="subheading" block>계정관리</v-btn>
+                                <v-btn flat color="" class="subheading" block>계정 관리</v-btn>
                             </router-link>
                         </v-flex>
                         <v-flex xs12>
