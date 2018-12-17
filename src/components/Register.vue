@@ -12,17 +12,24 @@
                             <v-text-field prepend-icon="person" v-model="email" label="이메일 *" :rules="emailRules" required></v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field prepend-icon="lock" v-model="password" label="비밀번호 *" type="password" :rules="passwordRule"
-                                required></v-text-field>
+                            <v-text-field counter="20" prepend-icon="lock" v-model="password" label="비밀번호 *" type="password" :rules="passwordRule" loading
+                                required>
+                                <v-progress-linear
+                                    slot="progress"
+                                    :value="progress"
+                                    :color="color"
+                                    height="5"
+                                ></v-progress-linear>
+                                </v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field v-model="phoneNumber" label="전화번호" required></v-text-field>
+                            <v-text-field v-model="phoneNumber" label="전화번호" :mask="phoneNumberMask" required></v-text-field>
                         </v-flex>
                         <v-flex xs12>
                             <v-text-field v-model="school" label="학교" required></v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field v-model="age" label="나이" required></v-text-field>
+                            <v-text-field v-model="age" mask="###" label="나이" suffix="살" required></v-text-field>
                         </v-flex>
                         <v-switch v-model="isAcceptance" :label="`이메일 수신 동의 여부`" color="rgb(92,49,143)"></v-switch>
                         <v-alert :value="regFail" color="error" icon="warning" transition="scale-transition">
@@ -57,8 +64,8 @@
             errMsg:"",
             regSucc:false,
 
-            email: null,
-            password: null,
+            email: "",
+            password: "",
             phoneNumber: null,
             school: null,
             age: null,
@@ -70,8 +77,10 @@
             ],
             passwordRule: [
                 v => !!v || '필수로 입력해야 합니다.',
-                v => (v && v.length >= 6) || '6자 이상의 비밀번호가 필요합니다.'
+                v => (v && v.length >= 6) || '6자 이상의 비밀번호가 필요합니다.',
+                v => (v && v.length <= 20) || '20자 이하의 비밀번호가 필요합니다.'
             ],
+            phoneNumberMask: "###-####-####"
         }),
         methods: {
             register() {
@@ -104,6 +113,15 @@
                         })
                 }
             }
+        },
+        computed: {
+            progress () {
+                return Math.min(100, this.password.length * 5)
+            },
+            color () {
+                return ['error', 'warning', 'success','success'][Math.floor(this.progress / 30)]
+            }
+            
         },
         props: {
         }

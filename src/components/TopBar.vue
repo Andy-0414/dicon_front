@@ -1,7 +1,7 @@
 <template>
     <v-toolbar app fixed clipped-left height="65" v-if="!this.$store.state.userData" color="rgb(92,49,143)" dark flat>
         <v-toolbar-side-icon large @click.stop="changeShowMenu()"></v-toolbar-side-icon>
-        <v-toolbar-title class="headline">{{serviceName}}</v-toolbar-title>
+        <v-toolbar-title class="headline"><router-link to="/">{{serviceName}}</router-link></v-toolbar-title>
         <v-spacer></v-spacer>
         <v-layout align-center justify-end row fill-height>
             <Login />
@@ -10,7 +10,7 @@
     </v-toolbar>
     <v-toolbar app fixed clipped-left height="65" v-else color="rgb(92,49,143)" dark flat>
         <v-toolbar-side-icon large @click.stop="changeShowMenu()"></v-toolbar-side-icon>
-        <v-toolbar-title class="headline">{{serviceName}}</v-toolbar-title>
+        <v-toolbar-title class="headline"><router-link to="/">{{serviceName}}</router-link></v-toolbar-title>
         <v-spacer></v-spacer>
         <v-layout align-center justify-end row fill-height>
             <v-avatar size="40" color="grey lighten-4" class="ma-2"><v-img :src="getMainPath+'/noneImage.png'" aspect-ratio="1" /></v-avatar>
@@ -88,4 +88,7 @@
 </script>
 
 <style scoped>
+a{
+    color:white;
+}
 </style>
