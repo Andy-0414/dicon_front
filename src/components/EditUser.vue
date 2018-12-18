@@ -1,9 +1,9 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-btn slot="activator" flat color="orange lighten-4" class="subheading">회원가입</v-btn>
+        <v-btn slot="activator" flat color="" class="subheading">{{this.user}}</v-btn>
         <v-card>
             <v-card-title>
-                <span class="headline pl-3 pt-3 nameColor font-weight-bold">회원가입</span>
+                <span class="headline pl-3 pt-3 nameColor font-weight-bold">계정 관리</span>
             </v-card-title>
             <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
@@ -124,6 +124,7 @@
             
         },
         props: {
+            user: String,
         }
     } 
 </script>

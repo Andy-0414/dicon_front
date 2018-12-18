@@ -14,7 +14,7 @@
         <v-spacer></v-spacer>
         <v-layout align-center justify-end row fill-height>
             <v-avatar size="40" color="grey lighten-4" class="ma-2"><v-img :src="getMainPath+'/noneImage.png'" aspect-ratio="1" /></v-avatar>
-            <div class="subheading">{{this.$store.state.userData.email}}</div>
+            <div class="subheading"><EditUser :user="this.$store.state.userData.email"/></div>
             <v-menu offset-y>
                 <v-btn slot="activator" dark icon large>
                     <v-icon>more_vert</v-icon>
@@ -32,11 +32,6 @@
                             </router-link>
                         </v-flex>
                         <v-flex xs12>
-                            <router-link to="/myinfo">
-                                <v-btn flat color="" class="subheading" block>계정 관리</v-btn>
-                            </router-link>
-                        </v-flex>
-                        <v-flex xs12>
                             <v-btn flat color="orange lighten-1" class="subheading" @click.native="logout" block>로그아웃</v-btn>
                         </v-flex>
                     </v-layout>
@@ -49,6 +44,7 @@
 <script>
     import Login from './Login.vue'
     import Register from './Register.vue'
+    import EditUser from './EditUser.vue'
 
     import axios from 'axios';
 
@@ -59,7 +55,8 @@
         }),
         components: {
             Login,
-            Register
+            Register,
+            EditUser
         },
         methods: {
             changeShowMenu() {
