@@ -10,36 +10,7 @@ export default new Vuex.Store({
         menuLock: false,
         mainPath: "http://58.145.101.15:3030",
 
-        tagList: [
-            {
-                "color": "green",
-                "text": "교내대회"
-            },
-            {
-                "color": "green",
-                "text": "외부대회"
-            },
-            {
-                "color": "red",
-                "text": "초등"
-            },
-            {
-                "color": "red",
-                "text": "중등"
-            },
-            {
-                "color": "red",
-                "text": "고등"
-            },
-            {
-                "color": "red",
-                "text": "대학"
-            },
-            {
-                "color": "orange",
-                "text": "해커톤"
-            },
-        ],
+        tagList: [],
         userData: null,
         contestData: [],
         searchToggle: false,
@@ -51,6 +22,9 @@ export default new Vuex.Store({
         },
         setContest(state, data) {
             state.contestData = data
+        },
+        setTagList(state, data) {
+            state.tagList = data
         },
         toggleMenu(state, data) {
             if (data)
@@ -79,6 +53,12 @@ export default new Vuex.Store({
             axios.get(this.state.mainPath + "/contest/getContestData")
                 .then(data => {
                     commit('setContest', data.data)
+                })
+        },
+        getTagList({ commit }) {
+            axios.get(this.state.mainPath + "/contest/getTags")
+                .then(data => {
+                    commit('setTagList', data.data)
                 })
         },
     }

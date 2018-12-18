@@ -16,7 +16,7 @@
                 </v-img>
                 <v-card-title primary-title>
                     <v-form ref="form" v-model="valid" lazy-validation>
-                        <v-text-field class="headline nameColor font-weight-bold" v-model="data.name" placeholder="대회 이름" :rules="[v => !!v || '필수로 입력해야 합니다.']" required></v-text-field>
+                        <v-text-field class="headline nameColor font-weight-bold" v-model="data.name" placeholder="대회 이름" :rules="notDataRule" required></v-text-field>
                     </v-form>
                 </v-card-title>
                 <v-card-text>
@@ -123,14 +123,11 @@
                                 <span class="headline pl-3 pt-3">항목 추가</span>
                             </v-card-title>
                             <v-card-text>
-                                <v-form ref="form" v-model="valid" lazy-validation>
                                     <v-layout align-center justify-center row fill-height>
                                         <v-flex xs10>
-                                            <v-select v-model="type" :items="typeList" placeholder="유형" :rules="notDataRule"
-                                                required />
+                                            <v-select v-model="type" :items="typeList" placeholder="유형"/>
                                         </v-flex>
                                     </v-layout>
-                                </v-form>
                             </v-card-text>
                             <v-card-actions class="pb-3">
                                 <v-spacer></v-spacer>
@@ -159,7 +156,7 @@
             valid: true,
 
             search: null,
-            type: null,
+            type: "text",
 
             tags: [],
 

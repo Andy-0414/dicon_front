@@ -19,6 +19,7 @@
         created: function (){
             this.$store.dispatch('getContest')
             this.$store.dispatch('getUser')
+            this.$store.dispatch('getTagList')
         },
         methods: {
             
