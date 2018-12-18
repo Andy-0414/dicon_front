@@ -16,12 +16,12 @@
                 </v-img>
                 <v-card-title primary-title>
                     <v-form ref="form" v-model="valid" lazy-validation>
-                        <v-text-field class="headline nameColor font-weight-bold" v-model="data.name"></v-text-field>
+                        <v-text-field class="headline nameColor font-weight-bold" v-model="data.name" placeholder="대회 이름" :rules="[v => !!v || '필수로 입력해야 합니다.']" required></v-text-field>
                     </v-form>
                 </v-card-title>
                 <v-card-text>
                     <div>
-                        <v-text-field class="text-truncate" v-model="data.content"></v-text-field>
+                        <v-text-field class="text-truncate" v-model="data.content" placeholder="대회 설명"></v-text-field>
                         <v-menu :close-on-content-click="false" :nudge-right="200" lazy transition="scale-transition"
                             offset-y full-width min-width="290px">
                             <v-text-field slot="activator" v-model="data.date.startDate" label="시작 날짜" prepend-icon="event"
@@ -52,8 +52,8 @@
                         </v-combobox>
                         <v-switch v-model="data.isApplicable" :color="data.isApplicable ? 'rgb(92,49,143)' : 'red'" :label="data.isApplicable ? '참가 가능' : '참가 불가'"></v-switch>
                     </div>
-                    <v-btn flat block color="green" class="headline" @click="sendServer()" v-if="!isCreated">저장</v-btn>
-                    <v-btn flat block color="green" class="headline" @click="sendCreateServer()" v-else>생성</v-btn>
+                    <v-btn flat block color="green" class="headline" @click="sendServer()" v-if="!isCreated" :disabled="!valid">저장</v-btn>
+                    <v-btn flat block color="green" class="headline" @click="sendCreateServer()" v-else :disabled="!valid">생성</v-btn>
                 </v-card-text>
             </v-card>
         </v-flex>
@@ -240,7 +240,8 @@
                 this.data.question[index].data.splice(idx, 1)
             },
             sendServer() {
-                this.data.tags = this.tags
+                if (this.$refs.form.validate()){
+this.data.tags = this.tags
                 axios(this.$store.state.mainPath + "/contest/updateContest", {
                     method: "post",
                     //withCredentials: true,
@@ -268,6 +269,7 @@
                     .catch(data => {
                         this.$router.push("/")
                     })
+                }
             },
             sendCreateServer() {
                 this.data.tags = this.tags
