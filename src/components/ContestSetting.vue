@@ -15,7 +15,9 @@
                     </v-layout>
                 </v-img>
                 <v-card-title primary-title>
-                    <v-text-field class="headline nameColor font-weight-bold" v-model="data.name"></v-text-field>
+                    <v-form ref="form" v-model="valid" lazy-validation>
+                        <v-text-field class="headline nameColor font-weight-bold" v-model="data.name"></v-text-field>
+                    </v-form>
                 </v-card-title>
                 <v-card-text>
                     <div>

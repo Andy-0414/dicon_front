@@ -8,7 +8,7 @@ export default new Vuex.Store({
     state: {
         showMenu: true,
         menuLock: false,
-        mainPath: "http://localhost:3030/",
+        mainPath: "http://58.145.101.15:3030",
 
         tagList: [
             {

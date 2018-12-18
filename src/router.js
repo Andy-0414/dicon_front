@@ -44,6 +44,6 @@ export default new Router({
             name: 'JoinData',
             component: JoinData,
             props: true
-        },
+        }
     ]
 })

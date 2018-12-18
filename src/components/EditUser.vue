@@ -7,12 +7,28 @@
             </v-card-title>
             <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
-                    <v-container grid-list-md @keyup.enter="register">
-                        <v-flex xs12>
-                            <v-text-field prepend-icon="person" v-model="email" label="이메일 *" :rules="emailRules" required></v-text-field>
+                    <v-container grid-list-md @keyup.enter="save">
+                        <v-flex xs12 class="mb-3">
+                            <span class="title pl-2 nameColor font-weight-bold">
+                                <v-avatar size="40" color="grey lighten-4" class="ma-2"><v-img :src="getMainPath+'/noneImage.png'" aspect-ratio="1" /></v-avatar>
+                                {{this.$store.state.userData.email}}
+                            </span>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field counter="24" prepend-icon="lock" v-model="password" label="비밀번호 *" type="password" :rules="passwordRule" loading
+                            <v-text-field v-model="phoneNumber" label="전화번호" :mask="phoneNumberMask" persistent-hint :hint="this.$store.state.userData.phoneNumber != phoneNumber ? '변경됨':''" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                            <v-text-field v-model="school" label="학교" persistent-hint :hint="this.$store.state.userData.school != school ? '변경됨':''" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                            <v-text-field v-model="age" mask="###" label="나이" suffix="살" persistent-hint :hint="this.$store.state.userData.age != age ? '변경됨':''" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                            <v-text-field v-model="cPassword" type="password" prepend-icon="lock" label="현재 비밀번호" color="success" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                            <transition name="fade">
+                            <v-text-field class="smooth" v-if="cPassword.length >= 6" counter="24" prepend-icon="lock" v-model="nPassword" label="새 비밀번호" type="password" :rules="passwordRule" loading
                                 required>
                                 <v-progress-linear
                                     slot="progress"
@@ -21,30 +37,22 @@
                                     height="5"
                                 ></v-progress-linear>
                                 </v-text-field>
+                            </transition>
                         </v-flex>
-                        <v-flex xs12>
-                            <v-text-field v-model="phoneNumber" label="전화번호" :mask="phoneNumberMask" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                            <v-text-field v-model="school" label="학교" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                            <v-text-field v-model="age" mask="###" label="나이" suffix="살" required></v-text-field>
-                        </v-flex>
-                        <v-switch v-model="isAcceptance" :label="`이메일 수신 동의 여부`" color="rgb(92,49,143)"></v-switch>
+                        <v-switch v-model="isAcceptance" :label="`이메일 수신 동의 여부`" persistent-hint :hint="this.$store.state.userData.isAcceptance != isAcceptance ? '변경됨':''" color="rgb(92,49,143)"></v-switch>
                         <v-alert :value="regFail" color="error" icon="warning" transition="scale-transition">
                             {{errMsg}}
                         </v-alert>
                         <v-alert :value="regSucc" color="success" icon="check_circle" transition="scale-transition">
-                            회원가입에 성공하였습니다.
+                            계정 정보를 수정하였습니다.
                         </v-alert>
                     </v-container>
                 </v-form>
             </v-card-text>
             <v-card-actions class="pb-3">
                 <v-spacer></v-spacer>
-                <v-btn color="red accent-4" flat @click.native="dialog = false">취소</v-btn>
-                <v-btn :disabled="!valid" color="deep-purple darken-4" flat @click.native="register" :loading="reqLoading">회원가입</v-btn>
+                <v-btn color="red accent-4" flat @click.native="close">닫기</v-btn>
+                <v-btn :disabled="!valid" color="deep-purple darken-4" @click.native="save" flat>저장</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -54,7 +62,7 @@
     import axios from 'axios';
 
     export default {
-        name: 'Register',
+        name: 'EditUser',
         data: () => ({
             dialog: false,
             valid: true,
@@ -64,17 +72,14 @@
             errMsg:"",
             regSucc:false,
 
-            email: "",
-            password: "",
-            phoneNumber: null,
-            school: null,
-            age: null,
-            isAcceptance: false,
+            phoneNumber:"",
+            school:"",
+            age:"",
+            isAcceptance:false,
 
-            emailRules: [
-                v => !!v || '필수로 입력해야 합니다.',
-                v => /.+@.+/.test(v) || '이메일 형식에 맞지 않습니다.'
-            ],
+            cPassword:"",
+            nPassword:"",
+
             passwordRule: [
                 v => !!v || '필수로 입력해야 합니다.',
                 v => (v && v.length >= 6) || '6자 이상의 비밀번호가 필요합니다.',
@@ -82,28 +87,36 @@
             ],
             phoneNumberMask: "###-####-####"
         }),
+        created:function(){
+            this.phoneNumber = this.$store.state.userData.phoneNumber
+            this.school = this.$store.state.userData.school
+            this.age = this.$store.state.userData.age
+            this.isAcceptance = this.$store.state.userData.isAcceptance
+        },
         methods: {
-            register() {
+            save() {
                 if (this.$refs.form.validate()) {
                     this.reqLoading = true;
-                    axios.post(this.$store.state.mainPath + "/auth/register", {
-                        email: this.email,
-                        password: this.password,
+                    axios.post(this.$store.state.mainPath + "/auth/update", {
                         phoneNumber: this.phoneNumber,
                         school: this.school,
                         age: this.age,
-                        isAcceptance : this.isAcceptance
+                        isAcceptance : this.isAcceptance,
+                        cPassword : this.cPassword,
+                        nPassword : this.nPassword,
                     })
                         .then(data => {
+                            this.$store.state.userData = data.data
+
+                            this.cPassword = ""
+                            this.nPassword = ""
+
                             this.regFail = false
                             this.regSucc = true;
                             setTimeout(() => {
-                                this.valid = true
                                 this.reqLoading = false
                                 this.regFail = false
                                 this.regSucc = false
-                                
-                                this.dialog = false;
                             }, 2000)
                         })
                         .catch(data => {
@@ -112,14 +125,22 @@
                             this.reqLoading = false
                         })
                 }
+            },
+            close(){
+                this.dialog = false
+                this.cPassword = ""
+                this.nPassword = ""
             }
         },
         computed: {
+            getMainPath() {
+                return this.$store.state.mainPath
+            },
             progress () {
-                return (this.password.length > 24 ? 0 :Math.min(100, this.password.length * 5))
+                return (this.nPassword.length > 24 ? 0 :Math.min(100, this.nPassword.length * 5))
             },
             color () {
-                return (this.password.length > 24 ? "error" : ['error', 'warning', 'success','success'][Math.floor(this.progress / 30)])
+                return (this.nPassword.length > 24 ? "error" : ['error', 'warning', 'success','success'][Math.floor(this.progress / 30)])
             }
             
         },
@@ -130,5 +151,16 @@
 </script>
 
 <style scoped>
-
+.smooth{
+    transition: 1s;
+    height: 70px;
+}
+.fade-enter /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    height: 0;
+}
+.fade-leave-to{
+    opacity: 0;
+    height: 0;
+}
 </style>
