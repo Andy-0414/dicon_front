@@ -31,7 +31,17 @@
                 <v-card-actions>
                     <v-layout align-end justify-end row fill-height v-if="data.isJoin">
                         <v-btn flat color="green" class="subheading">신청 완료</v-btn>
-                        <v-btn flat color="red accent-4" class="subheading" @click="detachContest">신청 취소</v-btn>
+                        <v-dialog v-model="dialog" max-width="500">
+                            <v-btn slot="activator" flat color="red accent-4" class="subheading">신청 취소</v-btn>
+                            <v-card>
+                                <v-card-title class="headline pl-3 pt-3 nameColor font-weight-bold">'{{data.name}}'' 신청을 취소하시겠습니까?</v-card-title>
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn flat @click="dialog=false">취소</v-btn>
+                                    <v-btn flat color="red accent-4" class="subheading" @click="detachContest">신청 취소</v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-dialog>
                     </v-layout>
                     <v-layout align-end justify-end row fill-height v-else>
                         <Join :data="data" />
@@ -55,6 +65,9 @@
         components: {
             Join
         },
+        data : ()=>({
+            dialog: false
+        }),
         methods: {
             detachContest() {
                 axios(this.$store.state.mainPath + "/join/detachContest", {
