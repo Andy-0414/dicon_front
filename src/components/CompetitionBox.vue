@@ -78,6 +78,7 @@
                     //withCredentials: true,
                 })
                     .then(data => {
+                        this.dialog = false
                         this.$store.dispatch('getContest')
                     })
                     .catch(err => {
