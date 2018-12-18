@@ -5,18 +5,13 @@
                 <v-img :src="getNewImage" aspect-ratio="1" v-if="data.img">
                     <v-layout align-center justify-center row fill-height>
                         <v-text-field label="이미지" v-model='imageName' @click="pickFile" prepend-icon='attach_file'></v-text-field>
-                        <input
-                            type="file"
-                            style="display: none"
-                            ref="image"
-                            accept="image/*"
-                            @change="onFilePicked"
-                        >
+                        <input type="file" style="display: none" ref="image" accept="image/*" @change="onFilePicked">
                     </v-layout>
                 </v-img>
                 <v-card-title primary-title>
                     <v-form ref="form" v-model="valid" lazy-validation>
-                        <v-text-field class="headline nameColor font-weight-bold" v-model="data.name" placeholder="대회 이름" :rules="notDataRule" required></v-text-field>
+                        <v-text-field class="headline nameColor font-weight-bold" v-model="data.name" placeholder="대회 이름"
+                            :rules="notDataRule" required></v-text-field>
                     </v-form>
                 </v-card-title>
                 <v-card-text>
@@ -50,7 +45,8 @@
                                 </v-chip>
                             </template>
                         </v-combobox>
-                        <v-switch v-model="data.isApplicable" :color="data.isApplicable ? 'rgb(92,49,143)' : 'red'" :label="data.isApplicable ? '참가 가능' : '참가 불가'"></v-switch>
+                        <v-switch v-model="data.isApplicable" :color="data.isApplicable ? 'rgb(92,49,143)' : 'red'"
+                            :label="data.isApplicable ? '참가 가능' : '참가 불가'"></v-switch>
                     </div>
                     <v-btn flat block color="green" class="headline" @click="sendServer()" v-if="!isCreated" :disabled="!valid">저장</v-btn>
                     <v-btn flat block color="green" class="headline" @click="sendCreateServer()" v-else :disabled="!valid">생성</v-btn>
@@ -123,11 +119,11 @@
                                 <span class="headline pl-3 pt-3">항목 추가</span>
                             </v-card-title>
                             <v-card-text>
-                                    <v-layout align-center justify-center row fill-height>
-                                        <v-flex xs10>
-                                            <v-select v-model="type" :items="typeList" placeholder="유형"/>
-                                        </v-flex>
-                                    </v-layout>
+                                <v-layout align-center justify-center row fill-height>
+                                    <v-flex xs10>
+                                        <v-select v-model="type" :items="typeList" placeholder="유형" />
+                                    </v-flex>
+                                </v-layout>
                             </v-card-text>
                             <v-card-actions class="pb-3">
                                 <v-spacer></v-spacer>
@@ -162,7 +158,7 @@
 
             imageName: '',
             imageFile: '',
-            tmpImg:'',
+            tmpImg: '',
 
             notDataRule: [v => !!v || '필수 입력'],
             typeList: ['text', 'checkbox', 'select', 'switch']
@@ -194,17 +190,17 @@
             }
         },
         methods: {
-            pickFile () {
+            pickFile() {
                 this.$refs.image.click()
             },
-            onFilePicked (e) {
+            onFilePicked(e) {
                 const files = e.target.files
-                if(files[0] !== undefined) {
+                if (files[0] !== undefined) {
                     this.imageName = files[0].name
-                    if(this.imageName.lastIndexOf('.') <= 0) {
+                    if (this.imageName.lastIndexOf('.') <= 0) {
                         return
                     }
-                    const fr = new FileReader ()
+                    const fr = new FileReader()
                     fr.readAsDataURL(files[0])
                     fr.addEventListener('load', () => {
                         this.tmpImg = fr.result
@@ -237,42 +233,42 @@
                 this.data.question[index].data.splice(idx, 1)
             },
             sendServer() {
-                if (this.$refs.form.validate()){
-this.data.tags = this.tags
-                axios(this.$store.state.mainPath + "/contest/updateContest", {
-                    method: "post",
-                    //withCredentials: true,
-                    data: {
-                        data: this.data,
-                        img: this.imageFile
-                    }
-                })
-                    .then(data => {
-                        let formData = new FormData();
-                        formData.append('id', data.data.id);
-                        formData.append('img', this.imageFile);
-                        axios(this.$store.state.mainPath + "/contest/imgUpload",{
-                            method: "post",
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
-                            },
-                            data: formData
-                            //withCredentials: true,
-                        }).then((data)=>{console.log("clear!")}).catch(err=>{console.log("notclear!")})
+                if (this.$refs.form.validate()) {
+                    this.data.tags = this.tags
+                    axios(this.$store.state.mainPath + "/contest/updateContest", {
+                        method: "post",
+                        //withCredentials: true,
+                        data: {
+                            data: this.data,
+                            img: this.imageFile
+                        }
+                    })
+                        .then(data => {
+                            let formData = new FormData();
+                            formData.append('id', data.data.id);
+                            formData.append('img', this.imageFile);
+                            axios(this.$store.state.mainPath + "/contest/imgUpload", {
+                                method: "post",
+                                headers: {
+                                    'Content-Type': 'multipart/form-data'
+                                },
+                                data: formData
+                                //withCredentials: true,
+                            }).then((data) => { console.log("clear!") }).catch(err => { console.log("notclear!") })
 
-                        this.$store.dispatch('getContest')
-                        this.$router.push("/")
-                    })
-                    .catch(data => {
-                        this.$router.push("/")
-                    })
+                            this.$store.dispatch('getContest')
+                            this.$router.push("/")
+                        })
+                        .catch(data => {
+                            this.$router.push("/")
+                        })
                 }
             },
             sendCreateServer() {
                 this.data.tags = this.tags
                 this.data.img = this.imageName
-                
-                axios(this.$store.state.mainPath + "/contest/createContest",{
+
+                axios(this.$store.state.mainPath + "/contest/createContest", {
                     method: "post",
                     data: {
                         data: this.data
@@ -283,14 +279,14 @@ this.data.tags = this.tags
                         let formData = new FormData();
                         formData.append('id', data.data.id);
                         formData.append('img', this.imageFile);
-                        axios(this.$store.state.mainPath + "/contest/imgUpload",{
+                        axios(this.$store.state.mainPath + "/contest/imgUpload", {
                             method: "post",
                             headers: {
                                 'Content-Type': 'multipart/form-data'
                             },
                             data: formData
                             //withCredentials: true,
-                        }).then((data)=>{console.log("clear!")}).catch(err=>{console.log("notclear!")})
+                        }).then((data) => { console.log("clear!") }).catch(err => { console.log("notclear!") })
 
                         this.$store.dispatch('getContest')
                         this.$router.push("/")
@@ -307,8 +303,8 @@ this.data.tags = this.tags
             getMainPath() {
                 return this.$store.state.mainPath
             },
-            getNewImage(){
-                if(this.tmpImg) return this.tmpImg
+            getNewImage() {
+                if (this.tmpImg) return this.tmpImg
                 else return `${this.getMainPath}/${this.data.img}`
             }
         }

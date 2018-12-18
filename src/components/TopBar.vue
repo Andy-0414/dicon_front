@@ -13,7 +13,7 @@
         <v-toolbar-title class="headline"><router-link to="/">{{serviceName}}</router-link></v-toolbar-title>
         <v-spacer></v-spacer>
         <v-layout align-center justify-end row fill-height>
-            <v-avatar size="40" color="grey lighten-4" class="ma-2"><v-img :src="getMainPath+'/noneImage.png'" aspect-ratio="1" /></v-avatar>
+            <v-avatar size="40" color="grey lighten-4"><v-img :src="getMainPath+'/noneImage.png'" aspect-ratio="1" /></v-avatar>
             <div class="subheading"><EditUser :user="this.$store.state.userData.email"/></div>
             <v-menu offset-y>
                 <v-btn slot="activator" dark icon large>

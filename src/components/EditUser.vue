@@ -10,7 +10,7 @@
                     <v-container grid-list-md @keyup.enter="save">
                         <v-flex xs12 class="mb-3">
                             <span class="title pl-2 nameColor font-weight-bold">
-                                <v-avatar size="40" color="grey lighten-4" class="ma-2"><v-img :src="getMainPath+'/noneImage.png'" aspect-ratio="1" /></v-avatar>
+                                <v-avatar size="60" color="grey lighten-4" class="ma-2"><v-img :src="getMainPath+'/noneImage.png'" aspect-ratio="1" /></v-avatar>
                                 {{this.$store.state.userData.email}}
                             </span>
                         </v-flex>

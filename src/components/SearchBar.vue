@@ -7,7 +7,7 @@
                 </v-select>
             </v-list-tile>
             <v-list-tile>
-                <v-switch v-model="searchApplicable" label="신청 가능 여부" @change="searchData" color="rgb(92,49,143)"></v-switch>
+                <v-switch v-model="searchApplicable" label="신청 가능한 대회" @change="searchData" color="rgb(92,49,143)"></v-switch>
             </v-list-tile>
             <v-subheader class="title mt-5 subColor">기한</v-subheader>
             <v-list-tile>
