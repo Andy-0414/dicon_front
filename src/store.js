@@ -26,6 +26,10 @@ export default new Vuex.Store({
         setTagList(state, data) {
             state.tagList = data
         },
+        setURL(state, data){
+            console.log(data)
+            state.mainPath = data
+        },
         toggleMenu(state, data) {
             if (data)
                 state.showMenu = data;

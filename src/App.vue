@@ -17,6 +17,7 @@
             TopBar,
         },
         created: function (){
+            this.$store.commit('setURL',window.location.protocol + "//" + window.location.host) // 어디든지 접속 가능
             this.$store.dispatch('getContest')
             this.$store.dispatch('getUser')
             this.$store.dispatch('getTagList')
