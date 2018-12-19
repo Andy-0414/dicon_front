@@ -100,10 +100,10 @@
                 return this.$store.state.mainPath
             },
             getImgUrl(){
-                if( this.data.img.indexOf("https://")|| this.data.img.indexOf("http://"))
+                if( this.data.img.indexOf("https://") != -1|| this.data.img.indexOf("http://") != -1)
                     return this.data.img
                 else
-                    return `${getMainPath}/${this.data.img}`
+                    return `${this.getMainPath}/${this.data.img}`
             }
         },
     } 

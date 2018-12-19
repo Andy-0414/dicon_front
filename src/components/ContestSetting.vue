@@ -169,7 +169,7 @@
         }),
         created: function () {
             this.tags = this.data.tags
-            this.md = this.data.md
+            this.md = (this.data.md ? this.data.md : "# 제목")
         },
         components: {
 
@@ -313,10 +313,10 @@
             getNewImage() {
                 if (this.tmpImg) return this.tmpImg
                 else{
-                    if( this.data.img.indexOf("https://")|| this.data.img.indexOf("http://"))
+                    if( this.data.img.indexOf("https://") != -1|| this.data.img.indexOf("http://") != -1 )
                         return this.data.img
                     else
-                        return `${getMainPath}/${this.data.img}`
+                        return `${this.getMainPath}/${this.data.img}`
                 }
             },
             compiledMarkdown: function () {
