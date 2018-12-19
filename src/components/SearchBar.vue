@@ -27,7 +27,7 @@
             </v-list-tile>
             <v-subheader class="title mt-5 subColor">검색</v-subheader>
             <v-list-tile>
-                <v-combobox :items="getTagList" :search-input.sync="search" v-model="searchTags" hide-selected label="태그"
+                <v-combobox :items="getTagList" :search-input.sync="search" v-model="$store.state.searchTags" hide-selected label="태그"
                     multiple small-chips :menu-props="{nudgeRight:'300'}" @change="searchData">
                     <template slot="no-data">
                         <v-list-tile>
@@ -55,8 +55,6 @@
 </template>
 
 <script>
-
-
     export default {
         name: 'SearchBar',
         data: () => ({
@@ -64,21 +62,20 @@
             menu: false,
             degreeItem: ['초등', '중등', '고등', '대학'],
             search: null,
-
             searchDegree: [],
             searchApplicable: false,
             searchStartDate: null,
             searchEndDate: null,
-            searchTags: [],
             searchString: null,
         }),
         watch: {
-            searchTags(searchTags, prev) {
-                if (searchTags.length === prev.length) return
-                if (searchTags.length > 6) {
-                    this.$nextTick(() => this.searchTags.pop())
+            getSearchTags(getSearchTags, prev) {
+                if (getSearchTags.length === prev.length) return
+                if (getSearchTags.length > 6) {
+                    console.log("pop")
+                    this.$nextTick(() => this.$store.state.searchTags.pop())
                 }
-                this.searchTags = searchTags.map(v => {
+                this.$store.state.searchTags = getSearchTags.map(v => {
                     var isString = typeof v === 'string'
                     if (isString) {
                         var obj = this.getTagList.find(x=>x.text == v)
@@ -101,12 +98,12 @@
                 })
                 this.$store.state.searchData = this.$store.state.searchData.filter((item, index, array) =>{
                     var count = 0;
-                    this.searchTags.forEach(x=>{
+                    this.getSearchTags.forEach(x=>{
                         count += (item.tags.findIndex(_x=>{
                             return (_x.text == x.text || _x.text == x)
                             }) != -1)
                     })
-                    return (count == this.searchTags.length)
+                    return (count == this.getSearchTags.length)
                 })
                 this.$store.state.searchData = this.$store.state.searchData.filter((item, index, array) =>{
                     var count = 0;
@@ -138,7 +135,7 @@
                 this.searchDegree = []
                 this.searchStartDate = null
                 this.searchEndDate = null
-                this.searchTags = []
+                this.$store.state.searchTags = []
                 this.searchString = null
             }
         },
@@ -150,6 +147,9 @@
             },
             getTagList() {
                 return this.$store.state.tagList
+            },
+            getSearchTags() {
+                return this.$store.state.searchTags
             }
         },
     }

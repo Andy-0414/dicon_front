@@ -22,7 +22,7 @@
                         <div class="text-truncate contentColor">{{data.content}}</div>
                         <div class="contentColor">{{`${data.date.startDate} ~ ${data.date.endDate}`}} </div>
                         <div>
-                            <v-chip label small v-for="x in data.tags" :key="x.text" :color="x.color+' lighten-3'">
+                            <v-chip label small v-for="x in data.tags" :key="x.text" :color="x.color+' lighten-3'" @click="pushTag(x)">
                                 {{ x.text }}
                             </v-chip>
                         </div>
@@ -84,6 +84,11 @@
                     .catch(err => {
                         console.log(err)
                     })
+            },
+            pushTag(x){
+                console.log(this.$store.state.searchTags.indexOf(x))
+                if(this.$store.state.searchTags.indexOf(x) == -1)
+                    this.$store.state.searchTags.push(x)
             }
         },
         computed: {

@@ -14,7 +14,8 @@ export default new Vuex.Store({
         userData: null,
         contestData: [],
         searchToggle: false,
-        searchData: []
+        searchData: [],
+        searchTags: []
     },
     mutations: {
         setUser(state, data) {
