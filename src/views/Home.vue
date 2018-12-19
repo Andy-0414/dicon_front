@@ -11,13 +11,13 @@
                 <v-container>
                     <v-layout row wrap>
                         <v-flex xs12 sm4>
-                            <CompetitionBox v-for="x in getDataA()" :key="x.name" :data="x" />
+                            <CompetitionBox v-for="(x,i) in getDataA()" :key="x.name+i" :data="x" />
                         </v-flex>
                         <v-flex xs12 sm4>
-                            <CompetitionBox v-for="x in getDataB()" :key="x.name" :data="x" />
+                            <CompetitionBox v-for="(x,i) in getDataB()" :key="x.name+i" :data="x" />
                         </v-flex>
                         <v-flex xs12 sm4>
-                            <CompetitionBox v-for="x in getDataC()" :key="x.name" :data="x" />
+                            <CompetitionBox v-for="(x,i) in getDataC()" :key="x.name+i" :data="x" />
                         </v-flex>
                     </v-layout>
                 </v-container>

@@ -3,7 +3,7 @@
         <v-btn slot="activator" flat color="rgb(92,49,143)" class="subheading" :disabled="!data.isApplicable">신청</v-btn>
         <v-card color="rgba(33,33,33,0.9)">
             <v-card-text class="ma-0 pa-0 scroll-y">
-                <v-img :src="`${getMainPath}/${data.img}`" aspect-ratio="3" gradient="to right, rgba(21,21,21,1), rgba(0,0,0,.5)">
+                <v-img :src="getImgUrl" aspect-ratio="3" gradient="to right, rgba(21,21,21,1), rgba(0,0,0,.5)">
                     <v-layout column fill-height>
                         <v-layout justify-end>
                             <v-btn icon dark @click="dialog = false" large>
@@ -104,6 +104,12 @@
         computed: {
             getMainPath() {
                 return this.$store.state.mainPath
+            },
+            getImgUrl(){
+                if( this.data.img.indexOf("https://")|| this.data.img.indexOf("http://"))
+                    return this.data.img
+                else
+                    return `${getMainPath}/${this.data.img}`
             }
         },
     } 

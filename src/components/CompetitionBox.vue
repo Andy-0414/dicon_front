@@ -2,7 +2,7 @@
     <v-flex xs12>
         <v-hover>
             <v-card class="pa-2 my-3 mx-2" slot-scope="{ hover }" :color='(data.isJoin ? "deep-purple lighten-5" : "")'>
-                <v-img v-if="getMainPath" :src="`${getMainPath}/${data.img}`" aspect-ratio="1">
+                <v-img v-if="getMainPath" :src="getImgUrl" aspect-ratio="1">
                     <v-expand-transition>
                         <div v-if="(hover && data.isApplicable)" class="d-flex transition-fast-in-fast-out green darken-3 title v-card--reveal white--text"
                             style="height: 30px">
@@ -90,12 +90,20 @@
             },
             pushTag(x){
                 if(this.$store.state.searchTags.indexOf(x) == -1 && this.$store.state.searchTags.length < 6)
+                {
                     this.$store.state.searchTags.push(x)
+                }
             },
         },
         computed: {
             getMainPath() {
                 return this.$store.state.mainPath
+            },
+            getImgUrl(){
+                if( this.data.img.indexOf("https://")|| this.data.img.indexOf("http://"))
+                    return this.data.img
+                else
+                    return `${getMainPath}/${this.data.img}`
             }
         },
     } 

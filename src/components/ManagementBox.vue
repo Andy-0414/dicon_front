@@ -1,7 +1,7 @@
 <template>
     <v-flex d-flex xs12 sm3>
         <v-card class="pa-2 ma-3">
-            <v-img :src="`${getMainPath}/${data.img}`" aspect-ratio="1"></v-img>
+            <v-img :src="getImgUrl" aspect-ratio="1"></v-img>
             <v-card-title primary-title>
                 <h3 class="headline nameColor font-weight-bold">{{data.name}}</h3>
             </v-card-title>
@@ -82,6 +82,12 @@
         computed:{
             getMainPath() {
                 return this.$store.state.mainPath
+            },
+            getImgUrl(){
+                if( this.data.img.indexOf("https://")|| this.data.img.indexOf("http://"))
+                    return this.data.img
+                else
+                    return `${getMainPath}/${this.data.img}`
             }
         }
     } 

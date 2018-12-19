@@ -305,7 +305,15 @@
             },
             getNewImage() {
                 if (this.tmpImg) return this.tmpImg
-                else return `${this.getMainPath}/${this.data.img}`
+                else{
+                    if( this.data.img.indexOf("https://")|| this.data.img.indexOf("http://"))
+                        return this.data.img
+                    else
+                        return `${getMainPath}/${this.data.img}`
+                }
+            },
+            getImgUrl(){
+                
             }
         }
     } 

@@ -70,6 +70,7 @@
         }),
         watch: {
             getSearchTags(getSearchTags, prev) {
+                this.searchData()
                 if (getSearchTags.length === prev.length) return
                 if (getSearchTags.length > 6) {
                     this.$nextTick(() => this.$store.state.searchTags.pop())
