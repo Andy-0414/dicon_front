@@ -55,9 +55,11 @@
         </v-flex>
         <v-flex>
             <v-card class="pa-3 ma-3" color="rgba(0,0,0,0.1)">
-                <v-card flat v-for="(i,index) in data.question" :key="data[index]" class="my-5 px-2 pt-2" color="rgba(0,0,0,0)">
+                <v-flex><v-card class="pa-3 mb-2" v-html="compiledMarkdown"></v-card></v-flex>
+                <v-flex><v-textarea label="상세 설명" solo v-model="md"></v-textarea></v-flex>
+                <v-card flat v-for="(i,index) in data.question" :key="data[index]" class="my-5 px-2 pt-2" color="rgba(0,0,0,0.1)">
                     <v-card-title>
-                        <v-text-field class="headline" v-model="data.question[index].label"></v-text-field>
+                        <v-text-field placeholder="질문 제목" class="headline" v-model="data.question[index].label"></v-text-field>
                         <v-spacer></v-spacer>
                         <div class="grey--text">{{i.type}}</div>
                         <v-btn fab flat color="red" @click="deleteList(index)">
@@ -160,11 +162,14 @@
             imageFile: '',
             tmpImg: '',
 
+            md:'# Hello',
+
             notDataRule: [v => !!v || '필수 입력'],
             typeList: ['text', 'checkbox', 'select', 'switch']
         }),
         created: function () {
             this.tags = this.data.tags
+            this.md = this.data.md
         },
         components: {
 
@@ -235,6 +240,7 @@
             sendServer() {
                 if (this.$refs.form.validate()) {
                     this.data.tags = this.tags
+                    this.data.md = this.md
                     axios(this.$store.state.mainPath + "/contest/updateContest", {
                         method: "post",
                         //withCredentials: true,
@@ -266,6 +272,7 @@
             },
             sendCreateServer() {
                 this.data.tags = this.tags
+                this.data.md = this.md
                 this.data.img = this.imageName
 
                 axios(this.$store.state.mainPath + "/contest/createContest", {
@@ -312,8 +319,8 @@
                         return `${getMainPath}/${this.data.img}`
                 }
             },
-            getImgUrl(){
-                
+            compiledMarkdown: function () {
+                return marked(this.md, { sanitize: true })
             }
         }
     } 

@@ -34,7 +34,6 @@
         props: {
         },
         data: () => ({
-
         }),
         created: function (){
             this.$store.commit('toggleMenu',true);
