@@ -72,7 +72,6 @@
             getSearchTags(getSearchTags, prev) {
                 if (getSearchTags.length === prev.length) return
                 if (getSearchTags.length > 6) {
-                    console.log("pop")
                     this.$nextTick(() => this.$store.state.searchTags.pop())
                 }
                 this.$store.state.searchTags = getSearchTags.map(v => {

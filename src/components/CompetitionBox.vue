@@ -43,7 +43,10 @@
                             </v-card>
                         </v-dialog>
                     </v-layout>
-                    <v-layout align-end justify-end row fill-height v-else>
+                    <v-layout align-end justify-end row fill-height v-else wrap>
+                        <v-flex>
+                            <div class="text-truncate contentColor">개최: {{data.owner}}</div>
+                        </v-flex>
                         <Join :data="data" />
                     </v-layout>
                 </v-card-actions>
@@ -86,10 +89,9 @@
                     })
             },
             pushTag(x){
-                console.log(this.$store.state.searchTags.indexOf(x))
-                if(this.$store.state.searchTags.indexOf(x) == -1)
+                if(this.$store.state.searchTags.indexOf(x) == -1 && this.$store.state.searchTags.length < 6)
                     this.$store.state.searchTags.push(x)
-            }
+            },
         },
         computed: {
             getMainPath() {
