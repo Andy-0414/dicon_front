@@ -10,7 +10,15 @@
             <v-flex xs12 lg9>
                 <v-container>
                     <v-layout row wrap>
-                        <CompetitionBox v-for="x in getContestData" :key="x.name" :data="x" />
+                        <v-flex xs12 sm4>
+                            <CompetitionBox v-for="x in getDataA()" :key="x.name" :data="x" />
+                        </v-flex>
+                        <v-flex xs12 sm4>
+                            <CompetitionBox v-for="x in getDataB()" :key="x.name" :data="x" />
+                        </v-flex>
+                        <v-flex xs12 sm4>
+                            <CompetitionBox v-for="x in getDataC()" :key="x.name" :data="x" />
+                        </v-flex>
                     </v-layout>
                 </v-container>
             </v-flex>
@@ -34,6 +42,23 @@
         },
         components: {
             CompetitionBox,
+        },
+        methods: {
+            getDataA(){
+                return this.getContestData.filter((e,i)=>{
+                    return i%3 == 0;
+                })
+            },
+            getDataB(){
+                return this.getContestData.filter((e,i)=>{
+                    return i%3 == 1;
+                })
+            },
+            getDataC(){
+                return this.getContestData.filter((e,i)=>{
+                    return i%3 == 2;
+                })
+            }
         },
         computed: {
             getContestData() {

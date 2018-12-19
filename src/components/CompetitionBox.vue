@@ -1,7 +1,7 @@
 <template>
-    <v-flex d-flex xs12 sm4>
+    <v-flex xs12>
         <v-hover>
-            <v-card class="pa-2 ma-3" slot-scope="{ hover }" :color='(data.isJoin ? "deep-purple lighten-5" : "")'>
+            <v-card class="pa-2 my-3 mx-2" slot-scope="{ hover }" :color='(data.isJoin ? "deep-purple lighten-5" : "")'>
                 <v-img v-if="getMainPath" :src="`${getMainPath}/${data.img}`" aspect-ratio="1">
                     <v-expand-transition>
                         <div v-if="(hover && data.isApplicable)" class="d-flex transition-fast-in-fast-out green darken-3 title v-card--reveal white--text"
