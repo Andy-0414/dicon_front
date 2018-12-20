@@ -43,7 +43,7 @@
                             </v-card>
                         </v-dialog>
                     </v-layout>
-                    <v-layout align-end justify-end row fill-height v-else wrap>
+                    <v-layout align-end justify-end row fill-height wrap>
                         <v-flex>
                             <div class="text-truncate contentColor">개최: {{data.owner}}</div>
                         </v-flex>
