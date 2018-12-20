@@ -1,6 +1,12 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-btn slot="activator" flat :color="(this.$store.state.userData.isAdmin ? '#FFFC7D':'')" class="subheading">{{this.user}}</v-btn>
+        <v-btn slot="activator" flat :color="(this.$store.state.userData.isAdmin ? '#FFFC7D':'')" class="subheading">
+            <v-tooltip bottom>
+                <span slot="activator">{{this.user}}</span>
+                <span v-if="this.$store.state.userData.isAdmin">대회 관리 계정입니다.</span>
+                <span v-else>참가자 계정입니다.</span>
+            </v-tooltip>
+        </v-btn>
         <v-card>
             <v-card-title>
                 <span class="headline pl-3 pt-3 nameColor font-weight-bold">계정 관리</span>
@@ -130,7 +136,7 @@
                 this.dialog = false
                 this.cPassword = ""
                 this.nPassword = ""
-            }
+            },
         },
         computed: {
             getMainPath() {
@@ -141,8 +147,10 @@
             },
             color () {
                 return (this.nPassword.length > 24 ? "error" : ['error', 'warning', 'success','success'][Math.floor(this.progress / 30)])
-            }
-            
+            },
+            getContestData() {
+                return this.$store.state.contestData
+            },
         },
         props: {
             user: String,

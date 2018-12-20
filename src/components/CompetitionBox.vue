@@ -32,7 +32,7 @@
                         <div class="text-truncate contentColor">{{data.content}}</div>
                         <div class="contentColor">{{`${data.date.startDate} ~ ${data.date.endDate}`}} </div>
                         <div>
-                            <v-chip label small v-for="x in data.tags" :key="x.text" :color="x.color+' lighten-3'"
+                            <v-chip label small v-for="x in data.tags" :key="data.name+x.text" :color="x.color+' lighten-3'"
                                 @click="pushTag(x)">
                                 {{ x.text }}
                             </v-chip>
@@ -82,7 +82,7 @@
         },
         components: {
             Join,
-            Score
+            Score,
         },
         data: () => ({
             dialog: false

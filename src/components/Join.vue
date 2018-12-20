@@ -20,7 +20,7 @@
                                     <div class="text-truncate white--text">{{data.content}}</div>
                                     <div class="white--text">{{`${data.date.startDate} ~ ${data.date.endDate}`}} </div>
                                     <div>
-                                        <v-chip label small v-for="x in data.tags" :key="x.text" :color="x.color+' lighten-3'">
+                                        <v-chip label small v-for="(x,idx) in data.tags" :key="x.text+idx" :color="x.color+' lighten-3'">
                                             {{ x.text }}
                                         </v-chip>
                                     </div>
@@ -34,7 +34,7 @@
                         <v-form ref="form" v-model="valid" lazy-validation v-else-if="!data.isEnded">
                             <v-card dark class="my-5 pa-2 ma-3" color="rgb(66,137,201)">
                                 <div class="display-1 ma-4 white--text font-weight-bold">신청</div>
-                                <v-card v-for="(i,index) in data.question" :key="i.label" class="pa-2 ma-2 my-4" color="rgb(66,137,201)"
+                                <v-card v-for="(i,index) in data.question" :key="i.label+index" class="pa-2 ma-2 my-4" color="rgb(66,137,201)"
                                     v-if="data.isApplicable">
                                     <v-card-title class="headline white--text">{{i.label}}</v-card-title>
                                     <v-card-text>

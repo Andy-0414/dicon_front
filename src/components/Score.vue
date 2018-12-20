@@ -10,13 +10,16 @@
                     <v-flex xs12 class="title">
                         수상자 목록
                     </v-flex>
-                    <v-flex>
-                        <v-data-table :items="data.winner" class="elevation-1 ma-2" hide-actions hide-headers>
+                    <v-flex class="ma-3">
+                        <v-data-table :items="data.winner" class="elevation-1" hide-actions hide-headers>
                             <template slot="items" slot-scope="props">
-                                <td>{{ props.item.user }}</td>
+                                <td>{{ props.item.user.join(', ') }}</td>
                                 <td class="text-xs-right">{{ props.item.text }}</td>
                             </template>
                         </v-data-table>
+                    </v-flex>
+                    <v-flex>
+                        <Feedback v-if="data.isJoin" :data="data"/>
                     </v-flex>
                 </v-container>
             </v-card-text>
@@ -29,6 +32,8 @@
 </template>
 
 <script>
+    import Feedback from './Feedback.vue'
+
     export default {
         name: 'Score',
         props: {
@@ -43,7 +48,7 @@
 
         },
         components: {
-
+            Feedback
         },
         computed: {
             getMainPath() {
