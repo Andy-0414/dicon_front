@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition" scrollable>
-        <v-btn slot="activator" flat color="rgb(92,49,143)" class="subheading" :disabled="!data.isApplicable">신청</v-btn>
+        <v-btn slot="activator" flat color="rgb(92,49,143)" class="subheading" :disabled="!data.isApplicable">{{data.isEnded ? "대회 종료":"신청"}}</v-btn>
         <v-card color="rgb(80, 80, 80,0.8)">
             <v-card-text class="ma-0 pa-0 scroll-y">
                 <v-layout justify-end>
@@ -31,9 +31,9 @@
                     <v-flex xs12 sm8 lg9>
                         <v-card class="pa-5 ma-3 white--text" v-html="compiledMarkdown" dark></v-card>
                         <v-btn block large class="title" :href="data.link" v-if="data.link">외부 링크</v-btn>
-                        <v-form ref="form" v-model="valid" lazy-validation v-else>
+                        <v-form ref="form" v-model="valid" lazy-validation v-else-if="!data.isEnded">
                             <v-card dark class="my-5 pa-2 ma-3">
-                                <div class="display-1 ma-4 white--text">신청</div>
+                                <div class="display-1 ma-4 white--text font-weight-bold">신청</div>
                                 <v-card v-for="(i,index) in data.question" :key="i.label" class="pa-2 ma-2" dark flat
                                     v-if="data.isApplicable">
                                     <v-card-title class="headline white--text">{{i.label}}</v-card-title>
