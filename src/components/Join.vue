@@ -54,7 +54,7 @@
                             <v-layout justify-center>
                                 <v-flex xs12 lg8>
                                      <v-tooltip top>
-                                        <v-btn slot="activator" v-if="data.isApplicable" :disabled="!valid || !this.$store.state.userData" @click="sendData"
+                                        <v-btn slot="activator" v-if="data.isApplicable" :disabled="!valid || !this.$store.state.userData || this.$store.state.userData.isAdmin" @click="sendData"
                                         large block color="rgb(23, 23, 23)" dark class="title mb-5">제출</v-btn>
                                         <span style="min-width:500px;">{{ getMsg }}</span>
                                      </v-tooltip>
@@ -125,6 +125,9 @@
             getMsg(){
                 if(!this.$store.state.userData){
                     return "로그인이 필요합니다."
+                }
+                else if(this.$store.state.userData.isAdmin){
+                    return "대회 주최자는 신청할 수 없습니다."
                 }
                 if(!this.valid){
                     return "조건에 맞지 않습니다."

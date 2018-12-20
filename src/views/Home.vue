@@ -2,7 +2,7 @@
     <v-content class="backColor">
         <v-layout justify-end>
             <v-flex class="pa-3 px-5 pt-5 display-1 boldColor" xs12 lg12>
-                참여 가능한 대회
+                대회목록
                 <v-divider></v-divider>
             </v-flex>
         </v-layout>

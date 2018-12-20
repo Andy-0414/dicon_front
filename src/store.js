@@ -11,7 +11,9 @@ export default new Vuex.Store({
         mainPath: "",
 
         tagList: [],
-        userData: null,
+        userData: {
+            isAdmin:false
+        },
         contestData: [],
         searchToggle: false,
         searchData: [],

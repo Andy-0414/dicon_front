@@ -47,7 +47,7 @@
                         <v-flex>
                             <div class="text-truncate contentColor">개최: {{data.owner}}</div>
                         </v-flex>
-                        <Join :data="data" />
+                        <Join :data="data" v-if="!data.isJoin"/>
                     </v-layout>
                 </v-card-actions>
             </v-card>

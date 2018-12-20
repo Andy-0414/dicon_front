@@ -32,6 +32,7 @@
                             <v-text-field v-model="age" mask="###" label="나이" suffix="살" required></v-text-field>
                         </v-flex>
                         <v-switch v-model="isAcceptance" :label="`이메일 수신 동의 여부`" color="rgb(92,49,143)"></v-switch>
+                        <v-switch v-model="isAdmin" :label="`대회 개최자이신가요?`" color="rgb(92,49,143)"></v-switch>
                         <v-alert :value="regFail" color="error" icon="warning" transition="scale-transition">
                             {{errMsg}}
                         </v-alert>
@@ -70,6 +71,7 @@
             school: null,
             age: null,
             isAcceptance: false,
+            isAdmin: false,
 
             emailRules: [
                 v => !!v || '필수로 입력해야 합니다.',
@@ -92,7 +94,8 @@
                         phoneNumber: this.phoneNumber,
                         school: this.school,
                         age: this.age,
-                        isAcceptance : this.isAcceptance
+                        isAcceptance : this.isAcceptance,
+                        isAdmin: this.isAdmin
                     })
                         .then(data => {
                             this.regFail = false

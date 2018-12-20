@@ -21,12 +21,12 @@
                 </v-btn>
                 <v-card style="max-width:150px;">
                     <v-layout align-center justify-end row wrap fill-height>
-                        <v-flex xs12>
+                        <v-flex xs12 v-if="this.$store.state.userData.isAdmin">
                             <router-link to="/management">
                                 <v-btn flat class="subheading" block>대회 관리</v-btn>
                             </router-link>
                         </v-flex>
-                        <v-flex xs12>
+                        <v-flex xs12 v-else>
                             <router-link to="/my">
                                 <v-btn flat color="" class="subheading" block>내 참여 대회</v-btn>
                             </router-link>

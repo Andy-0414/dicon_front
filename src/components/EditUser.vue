@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-btn slot="activator" flat color="" class="subheading">{{this.user}}</v-btn>
+        <v-btn slot="activator" flat :color="(this.$store.state.userData.isAdmin ? '#FFFC7D':'')" class="subheading">{{this.user}}</v-btn>
         <v-card>
             <v-card-title>
                 <span class="headline pl-3 pt-3 nameColor font-weight-bold">계정 관리</span>
