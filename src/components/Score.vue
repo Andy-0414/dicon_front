@@ -11,16 +11,11 @@
                         수상자 목록
                     </v-flex>
                     <v-flex>
-                        <v-data-table
-                        :items="data.winner"
-                        class="elevation-1"
-                        hide-actions
-                        hide-headers
-                        >
-                        <template slot="items" slot-scope="props">
-                            <td>{{ props.item.user }}</td>
-                            <td class="text-xs-right">{{ props.item.text }}</td>
-                        </template>
+                        <v-data-table :items="data.winner" class="elevation-1 ma-2" hide-actions hide-headers>
+                            <template slot="items" slot-scope="props">
+                                <td>{{ props.item.user }}</td>
+                                <td class="text-xs-right">{{ props.item.text }}</td>
+                            </template>
                         </v-data-table>
                     </v-flex>
                 </v-container>
@@ -39,18 +34,18 @@
         props: {
             data: Object
         },
-        data : ()=>({
+        data: () => ({
             dialog: false,
         }),
         created: function () {
         },
-        methods:{
+        methods: {
 
         },
         components: {
-            
+
         },
-        computed:{
+        computed: {
             getMainPath() {
                 return this.$store.state.mainPath
             }
