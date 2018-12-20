@@ -18,8 +18,8 @@
         },
         created: function (){
             
-            this.$store.commit('setURL',"http://127.0.0.1:3030") // 디버그 용
-            //this.$store.commit('setURL',window.location.protocol + "//" + window.location.host) // 어디든지 접속 가능
+            //this.$store.commit('setURL',"http://127.0.0.1:3030") // 디버그 용
+            this.$store.commit('setURL',window.location.protocol + "//" + window.location.host) // 어디든지 접속 가능
             this.$store.dispatch('getContest')
             this.$store.dispatch('getUser')
             this.$store.dispatch('getTagList')
