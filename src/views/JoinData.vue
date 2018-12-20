@@ -25,8 +25,13 @@
                             <v-flex class="display-2 w">
                                 <v-avatar size="100" color="grey lighten-4" class="ma-5"><v-img :src="getMainPath+'/noneImage.png'" aspect-ratio="1" /></v-avatar>
                                 {{currentUser.email}}
-                                </v-flex>
+                            </v-flex>
                         </v-layout>
+                        <v-flex xs12 class="pa-2 ma-3 subheading">
+                            <div>전화번호 : {{currentUser.phoneNumber}}</div> 
+                            <div>학교 : {{currentUser.school}}</div> 
+                            <div>나이 : {{currentUser.age}}</div>
+                        </v-flex>
                     </v-card-title>
                     <v-card v-if="getContestData" flat v-for="(i,index) in getContestData.question" :key="i.label" class="pa-2 ma-3" color="rgba(0,0,0,0.1)">
                         <v-card-title class="title">{{i.label}}</v-card-title>
@@ -53,7 +58,7 @@
             ],
 
             joinData: [],
-            currentUser: null,
+            currentUser: {email:"pjh8667@naver.com",answer:[]},
         }),
         created: function () {
             this.getJoinData()
