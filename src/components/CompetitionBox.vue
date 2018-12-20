@@ -44,9 +44,9 @@
                         <v-flex>
                             <div class="text-truncate contentColor">개최: {{data.owner}}</div>
                         </v-flex>
-                        <v-layout wrap align-end justify-end v-if="data.isJoin">
-                            <v-btn flat color="green" class="subheading">{{data.isEnded ? "대회 종료":"신청 완료"}}</v-btn>
-                            <v-dialog v-model="dialog" max-width="500" v-if="!data.isEnded">
+                        <v-layout wrap align-end justify-end>
+                            <v-btn flat color="green" class="subheading" v-if="data.isJoin">{{data.isEnded ? "대회 종료":"신청 완료"}}</v-btn>
+                            <v-dialog v-model="dialog" max-width="500" v-if="data.isJoin && !data.isEnded">
                                 <v-btn slot="activator" flat color="red accent-4" class="subheading">신청 취소</v-btn>
                                 <v-card>
                                     <v-card-title class="headline pl-3 pt-3 nameColor font-weight-bold">'{{data.name}}''
@@ -59,9 +59,9 @@
                                     </v-card-actions>
                                 </v-card>
                             </v-dialog>
-                            <Score :data="data" v-else />
+                            <Score :data="data" v-if="data.isEnded"/>
+                            <Join :data="data" v-if="!data.isEnded && !data.isJoin" />
                         </v-layout>
-                        <Join :data="data" v-else />
                     </v-layout>
                 </v-card-actions>
             </v-card>

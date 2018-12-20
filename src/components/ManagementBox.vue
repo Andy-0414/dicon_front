@@ -13,6 +13,7 @@
             <v-card-actions>
                 <v-layout align-end justify-end row fill-height wrap>
                     <router-link :to="'/joinData/'+data.id"><v-btn flat color="green" class="subheading">신청자</v-btn></router-link>
+                    <v-if v-if="!data.isEnded">
                     <router-link :to="'/management/'+data.id"><v-btn flat color="green" class="subheading">설정</v-btn></router-link>
                     <v-dialog v-model="dialog" max-width="1000">
                         <v-btn slot="activator" flat color="red accent-4" class="subheading">종료</v-btn>
@@ -52,6 +53,7 @@
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
+                    </v-if>
                 </v-layout>
             </v-card-actions>
         </v-card>

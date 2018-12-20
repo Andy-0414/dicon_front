@@ -7,11 +7,21 @@
             </v-card-title>
             <v-card-text>
                 <v-container grid-list-md>
-                    <v-flex xs12>
+                    <v-flex xs12 class="title">
                         수상자 목록
                     </v-flex>
-                    <v-flex v-for="i in data.winner" :key="i.text">
-                        {{i.text}} : <v-chip label v-for="j in i.user" :key="j">{{j}}</v-chip>
+                    <v-flex>
+                        <v-data-table
+                        :items="data.winner"
+                        class="elevation-1"
+                        hide-actions
+                        hide-headers
+                        >
+                        <template slot="items" slot-scope="props">
+                            <td>{{ props.item.user }}</td>
+                            <td class="text-xs-right">{{ props.item.text }}</td>
+                        </template>
+                        </v-data-table>
                     </v-flex>
                 </v-container>
             </v-card-text>
