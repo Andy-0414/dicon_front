@@ -40,7 +40,9 @@
                                 <v-card>
                                     <v-card-title class="headline pl-3 pt-3 nameColor font-weight-bold">'{{data.name}}'' 신청을 취소하시겠습니까?</v-card-title>
                                     <v-card-actions>
-                                        
+                                        <v-spacer></v-spacer>
+                                        <v-btn flat @click="dialog=false">취소</v-btn>
+                                        <v-btn flat color="red accent-4" class="subheading" @click="detachContest">신청 취소</v-btn>
                                     </v-card-actions>
                                 </v-card>
                             </v-dialog>

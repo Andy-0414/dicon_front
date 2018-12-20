@@ -8,6 +8,7 @@
                             <tr @click="currentUser = props.item">
                                 <td>{{props.index}}</td>
                                 <td class="subheading">{{ props.item.email }}</td>
+                                <td>{{(props.item.ok ? "O":"X")}}</td>
                             </tr>
                         </template>
                         <template slot="no-data">
@@ -37,6 +38,12 @@
                         <v-card-title class="title">{{i.label}}</v-card-title>
                         <v-card-text>{{currentUser.answer[index]}}</v-card-text>
                     </v-card>
+                    <v-layout justify-center>
+                        <v-flex xs4>
+                            <v-btn block class="subheading white--text" color="green" v-if="!currentUser.ok" @click="sendOK(currentUser.email)">승인</v-btn>
+                            <v-btn block class="subheading white--text" color="red" v-else @click="sendOK(currentUser.email)">승인 취소</v-btn>
+                        </v-flex>
+                    </v-layout>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -53,12 +60,13 @@
         },
         data: () => ({
             header:[
-                {text : "No.", value: "index"},
-                {text : "Email", value: "email"}
+                {text : "신청번호", value: "index"},
+                {text : "이메일", value: "email"},
+                {text : "승인", value: "ok"}
             ],
 
             joinData: [],
-            currentUser: {email:"pjh8667@naver.com",answer:[]},
+            currentUser: null,
         }),
         created: function () {
             this.getJoinData()
@@ -75,9 +83,28 @@
                 })
                     .then(data => {
                         this.joinData = data.data
+                        if(this.currentUser){
+                            var idx = this.joinData.findIndex(x => x.email == this.currentUser.email)
+                            if(idx != -1) this.currentUser = this.joinData[idx]
+                        }
                     })
                     .catch(err => {
                         this.joinData = []
+                    })
+            },
+            sendOK(email){
+                axios(this.$store.state.mainPath + "/join/okUser", {
+                    method: "post",
+                    data: {
+                        id: this.id,
+                        email : email
+                    }
+                })
+                    .then(data => {
+                        this.getJoinData()
+                    })
+                    .catch(err => {
+                        this.getJoinData()
                     })
             }
         },
