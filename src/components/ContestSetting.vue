@@ -130,7 +130,7 @@
                             <v-card-actions class="pb-3">
                                 <v-spacer></v-spacer>
                                 <v-btn color="red accent-4" flat @click.native="dialog = false">취소</v-btn>
-                                <v-btn color="green" flat :disable="!valid" @click="createList(type)">추가</v-btn>
+                                <v-btn color="green" flat @click="createList(type)">추가</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
@@ -222,14 +222,12 @@
                 this.data.question.splice(index, 1)
             },
             createList(type) {
-                if (this.$refs.form.validate()) {
                     this.data.question.push({
                         type: type,
                         label: null,
                         data: (type == 'text' || type == 'switch' ? "" : []),
                     })
                     this.dialog = false
-                }
             },
             addData(index) {
                 this.data.question[index].data.push('')
