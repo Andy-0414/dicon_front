@@ -35,7 +35,7 @@
                         <v-form ref="form" v-model="valid" lazy-validation v-else>
                             <v-card dark class="my-5 pa-2 ma-3">
                                 <div class="display-1 ma-4 white--text">신청</div>
-                                <v-card v-for="(i,index) in data.question" :key="i.label" class="pa-3 ma-4" dark
+                                <v-card v-for="(i,index) in data.question" :key="i.label" class="pa-2 ma-2" dark flat
                                     v-if="data.isApplicable">
                                     <v-card-title class="headline white--text">{{i.label}}</v-card-title>
                                     <v-card-text>
@@ -54,11 +54,13 @@
                             </v-card>
                             <v-layout justify-center>
                                 <v-flex xs12 lg8>
-                                <v-btn v-if="data.isApplicable" :disabled="!valid || !this.$store.state.userData" @click="sendData"
-                                large block color="rgb(23, 23, 23)" dark class="title mb-5">제출</v-btn>
+                                     <v-tooltip top>
+                                        <v-btn slot="activator" v-if="data.isApplicable" :disabled="!valid || !this.$store.state.userData" @click="sendData"
+                                        large block color="rgb(23, 23, 23)" dark class="title mb-5">제출</v-btn>
+                                        <span style="min-width:500px;">{{ getMsg }}</span>
+                                     </v-tooltip>
                                 </v-flex>
                             </v-layout>
-                            
                         </v-form>
                     </v-flex>
                 </v-layout>
@@ -120,6 +122,15 @@
             },
             compiledMarkdown: function () {
                 return marked(this.data.md, { sanitize: true })
+            },
+            getMsg(){
+                if(!this.$store.state.userData){
+                    return "로그인이 필요합니다."
+                }
+                if(!this.valid){
+                    return "조건에 맞지 않습니다."
+                }
+                return "신청 가능합니다."
             }
         },
     } 
