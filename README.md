@@ -29,5 +29,5 @@
     - 신청자 조회
 
 
-## 기능 소개
+## 연관 레포지토리
 [server](https://github.com/Andy-0414/dicon_server)
