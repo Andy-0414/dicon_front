@@ -30,4 +30,4 @@
 
 
 ## 연관 레포지토리
-[server](https://github.com/Andy-0414/dicon_server)
+- [server](https://github.com/Andy-0414/dicon_server)
